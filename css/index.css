@@ -3664,6 +3664,38 @@ pre .javascript .title,
 pre .coffeescript .title {
   color: var(--highlight-blue) !important;
 }
+.trm-reward {
+  padding: 2rem 0 0 0;
+  text-align: center;
+  margin: auto;
+}
+.trm-reward .trm-reward-btn {
+  border-radius: 50%;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  color: var(--primary, #afb42b);
+  border-radius: 100%;
+  cursor: pointer;
+}
+.trm-reward .trm-reward-comment {
+  margin-top: 1rem;
+  color: var(--theme-color, #00283a);
+}
+.trm-reward #qr img {
+  width: 10rem;
+  height: 10rem;
+  display: inline-block;
+  margin: 1rem 1rem 0 1rem;
+  padding: 5px;
+  border-radius: 5px;
+  transition-property: all;
+  transition-duration: 0.3s;
+  transition-delay: 0s;
+  box-shadow: var(--box-shadow);
+}
 .trm-search-popup {
   position: fixed;
   top: 0;
@@ -3827,6 +3859,36 @@ pre .coffeescript .title {
     word-wrap: break-word;
   }
 }
+.trm-hot-search {
+  margin-top: 20px;
+}
+.trm-hot-search .trm-hot-search-title {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.trm-hot-search .trm-hot-search-title i {
+  margin-right: 10px;
+  color: #00283a;
+}
+.trm-hot-search .trm-hot-search-title span {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+.trm-hot-search .trm-hot-search-content ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.trm-hot-search .trm-hot-search-content ul li {
+  margin-bottom: 10px;
+}
+.trm-hot-search .trm-hot-search-content ul li a {
+  color: #7b7b7d;
+}
+.trm-hot-search .trm-hot-search-content ul li a:hover {
+  color: #00283a;
+}
 .trm-fixed-container {
   position: fixed;
   z-index: 10;
@@ -3902,6 +3964,104 @@ pre .coffeescript .title {
 .trm-fixed-container.offset #trm-back-top {
   opacity: 1;
   transform: translateY(0) scale(1);
+}
+.trm-card .trm-card-content {
+  padding: 1rem;
+}
+.trm-card .trm-card-content .trm-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.trm-card .trm-card-content .trm-list li {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid var(--card-border-color, #e5e5e5);
+  transition: all 0.3s ease;
+}
+.trm-card .trm-card-content .trm-list li:last-child {
+  border-bottom: none;
+}
+.trm-card .trm-card-content .trm-list li:hover {
+  background-color: var(--card-hover-bg, #f8f9fa);
+  transform: translateX(5px);
+}
+.trm-card .trm-card-content .trm-list li a {
+  color: var(--text-color, #333);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+.trm-card .trm-card-content .trm-list li a:hover {
+  color: var(--primary-color, #007bff);
+  background-color: var(--card-hover-bg, #f8f9fa);
+}
+.trm-card .trm-card-content .trm-list li a .hot-rank {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  height: auto;
+  background: none;
+  color: var(--text-color, #333);
+  border-radius: 0;
+  font-size: 0.8rem;
+  font-weight: bold;
+  margin-right: 0.75rem;
+  flex-shrink: 0;
+}
+.trm-card .trm-card-content .trm-list li a .hot-rank:nth-child(1) {
+  background: none;
+}
+.trm-card .trm-card-content .trm-list li a .hot-rank:nth-child(2) {
+  background: none;
+}
+.trm-card .trm-card-content .trm-list li a .hot-rank:nth-child(3) {
+  background: none;
+}
+.trm-card .trm-card-content .trm-list li a .hot-title {
+  flex: 1;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.trm-card .trm-card-content .trm-list li a .hot-value {
+  color: var(--text-color-secondary, #666);
+  font-size: 0.8rem;
+  margin-left: 0.5rem;
+  flex-shrink: 0;
+  background: var(--card-hover-bg, #f8f9fa);
+  padding: 0.2rem 0.5rem;
+  border-radius: 12px;
+}
+@media (max-width: 768px) {
+  .trm-card .trm-card-content {
+    padding: 0.75rem;
+  }
+  .trm-card .trm-card-content .trm-list li {
+    padding: 0.4rem 0;
+  }
+  .trm-card .trm-card-content .trm-list li a {
+    padding: 0.4rem;
+    font-size: 0.9rem;
+  }
+  .trm-card .trm-card-content .trm-list li a .hot-rank {
+    width: auto;
+    height: auto;
+    font-size: 0.7rem;
+    margin-right: 0.5rem;
+  }
+  .trm-card .trm-card-content .trm-list li a .hot-title {
+    font-size: 0.85rem;
+  }
+  .trm-card .trm-card-content .trm-list li a .hot-value {
+    font-size: 0.75rem;
+    padding: 0.15rem 0.4rem;
+  }
 }
 :root {
   --primary: #5a5df0;
