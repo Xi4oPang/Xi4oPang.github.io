@@ -71,6 +71,8 @@
 
 <!-- Theme mode css -->
 <link data-swup-theme rel="stylesheet" href="/css/index.css?v=0.0.0" id="trm-switch-style">
+<!-- Custom spacing optimization -->
+<link rel="stylesheet" href="/css/custom-spacing.css?v=0.0.0">
 <script>
     let defaultMode = ASYNC_CONFIG.theme.default !=='auto' ?  ASYNC_CONFIG.theme.default : (window.matchMedia("(prefers-color-scheme: light)").matches ? 'style-light' : 'style-dark')
     let catchMode = localStorage.getItem('theme-mode') || defaultMode;
@@ -116,9 +118,6 @@
     
  
 
-<!-- 不蒜子统计 -->
-
-<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 <meta name="generator" content="Hexo 7.3.0"></head>
 
@@ -418,14 +417,7 @@
             X1a0P4n9
         </div>
     </div>
-    
-    <div class="col-sm-4">
-        <div class="trm-card trm-label trm-label-light text-center">
-            <i class="far fa-eye trm-icon"></i><br>
-            <span id="busuanzi_container_page_pv"><i class="fa fa-spinner fa-spin"></i></span>
-        </div>
-    </div>
-    
+
 </div>
 <div class="trm-card ">
     <article id="article-container" class="trm-publication">
@@ -519,19 +511,7 @@
 
     
 
-    
-        <div class="trm-footer-item">
-            
-                <span>总访问量 <span id="busuanzi_value_site_pv"><i class="fa fa-spinner fa-spin"></i></span></span>
-            
-            
-                <span class="footer-separator" data-separator=" · "></span>
-            
-            
-                <span>总访客数 <span id="busuanzi_value_site_uv"><i class="fa fa-spinner fa-spin"></i></span></span>
-            
-        </div>
-     
+ 
 </footer>
                     <!-- footer end -->
 
