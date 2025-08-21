@@ -18,7 +18,7 @@
 <meta property="og:image" content="https://xi4opang.github.io/img/404.jpg">
 <meta property="og:image" content="https://xi4opang.github.io/img/404.jpg">
 <meta property="article:published_time" content="2025-08-09T15:55:50.325Z">
-<meta property="article:modified_time" content="2025-08-08T10:32:43.000Z">
+<meta property="article:modified_time" content="2025-08-21T14:46:35.965Z">
 <meta property="article:author" content="X1a0P4n9">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://xi4opang.github.io/img/404.jpg">
@@ -73,7 +73,7 @@
 
 <!-- Variable -->
 <script>window.ASYNC_CONFIG = {"hostname":"xi4opang.github.io","author":"X1a0P4n9","root":"/","typed_text":["Java/C# Developer"],"theme_version":"0.0.0","theme":{"switch":true,"default":"style-light"},"favicon":{"logo":"log.svg","icon16":"log.svg","icon32":"log.svg","apple_touch_icon":"apple-touch-icon.png","webmanifest":"/site.webmanifest","visibilitychange":false,"hidden":"failure.ico","show_text":"(/≧▽≦/)咦！又好了！","hide_text":"(●—●)喔哟，崩溃啦！"},"i18n":{"placeholder":"搜索文章...","empty":"找不到您查询的内容: ${query}","hits":"找到 ${hits} 条结果","hits_time":"找到 ${hits} 条结果（用时 ${time} 毫秒）","author":"本文作者：","copyright_link":"本文链接：","copyright_license_title":"版权声明：","copyright_license_content":"本博客所有文章除特别声明外，均默认采用 undefined 许可协议。","copy_success":"复制成功","copy_failure":"复制失败","open_read_mode":"进入阅读模式","exit_read_mode":"退出阅读模式","notice_outdate_message":"距离上次更新已经 undefined 天了, 文章内容可能已经过时。","sticky":"置顶","just":"刚刚","min":"分钟前","hour":"小时前","day":"天前","month":"个月前"},"swup":false,"plugin":{"flickr_justified_gallery":"https://npm.elemecdn.com/flickr-justified-gallery@latest/dist/fjGallery.min.js"},"icons":{"sun":"icon-sun","moon":"icon-Moon","play":"icon-player","email":"icon-email","next":"icon-fenlei","calendar":"icon-calendar-v2","clock":"icon-shijian","user":"icon-user","back_top":"icon-top","close":"icon-guanbi","search":"icon-chaxun","reward":"icon-dashang1","toc_tag":"icon-mulu","read":"icon-read-fill","arrows":"icon-zuoyoujiantou-2","double_arrows":"fas fa-angle-double-down","copy":"icon-copy","user_tag":"icon-user"},"icontype":"symbol","highlight":{"plugin":"highlighjs","theme":true,"copy":true,"lang":true,"title":"default","height_limit":false},"toc":{"post_title":false},"live_time":{"start_time":"08/07/2025 00:00:00","prefix":"博客已安全运行 undefined 天"},"danmu":{"enable":false,"el":".trm-banner"},"creative_commons":{"license":"by-nc-sa","language":"deed.zh-hans"},"search":{"enable":true,"type":"local","href":"https://www.google.com/search?q=site:","domain":null,"path":"search.json"}};</script>
-<script id="async-page-config">window.PAGE_CONFIG = {"isPost":true,"isHome":false,"postUpdate":"2025-08-08 18:32:43"};</script>
+<script id="async-page-config">window.PAGE_CONFIG = {"isPost":true,"isHome":false,"postUpdate":"2025-08-21 22:46:35"};</script>
 
 <!-- Theme mode css -->
 <link data-swup-theme rel="stylesheet" href="/css/index.css?v=0.0.0" id="trm-switch-style">
@@ -440,7 +440,8 @@
 
 <p>4.自定义图标步骤：点击入库–&gt;右上角「购物车」—&gt; 添加至项目—&gt;选择目标项目—&gt;确定。这样图表就被添加进图标库中了，&#x3D;&#x3D;<strong>但是</strong>&#x3D;&#x3D;每次添加了图表记得点击「点击更新代码…」，不然图库中有但是无法生效（第一次用不知道坑了很久T_T）。<br><img src="https://p.sda1.dev/26/4df6ca146d918e24f4a4ab37910d9f97/image.png"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
 <h1 id="主题配置"><a href="#主题配置" class="headerlink" title="主题配置"></a>主题配置</h1><p><a target="_blank" rel="noopener" href="https://hexo-theme-async.imalun.com/guide/async-config.html">主题官网配置生成器</a>直接可视化操作，就不用按照文档挨个填写了。</p>
-
+<h1 id="评论功能"><a href="#评论功能" class="headerlink" title="评论功能"></a>评论功能</h1><p>1.使用<a target="_blank" rel="noopener" href="https://twikoo.js.org/">Twikoo</a> 使用文档云函数部署<br>2.注册一下<a target="_blank" rel="noopener" href="https://twikoo.js.org/mongodb-atlas.html">MongoDB Atlas</a> 根据文档一步步来就行了<br>3.在主题配置文件中加入配置</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">comment:</span></span><br><span class="line">  <span class="attr">twikoo:</span></span><br><span class="line">    <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">envId:</span>  <span class="comment">#这儿填入你部署好的URL即可</span></span><br><span class="line">    <span class="attr">region:</span> <span class="comment"># 环境地域，默认为 ap-shanghai，如果您的环境地域不是上海，需传此参数</span></span><br><span class="line">    <span class="attr">option:</span> <span class="comment"># 用于区分不同文章的自定义 js 路径，如果您的文章路径不是 location.pathname，需传此参数</span></span><br></pre></td></tr></table></figure>
 </article>
     
     
@@ -500,6 +501,10 @@
 
     
 
+    <div class="trm-card trm-scroll-animation comment-container">
+    <div id="tcomment"></div>
+</div>
+
 
 
                     <div class="trm-divider footer-divider"></div>
@@ -558,7 +563,7 @@
 				</span>
       </div>
       <div class="trm-post-toc-content">
-        <ol class="trm-toc"><li class="trm-toc-item trm-toc-level-1" title="自定义图表小坑"><a rel="nofollow" class="trm-toc-link" href="#自定义图表小坑"><span class="trm-toc-number">1.</span> <span class="trm-toc-text">自定义图表小坑</span></a></li><li class="trm-toc-item trm-toc-level-1" title="主题配置"><a rel="nofollow" class="trm-toc-link" href="#主题配置"><span class="trm-toc-number">2.</span> <span class="trm-toc-text">主题配置</span></a></li></ol>
+        <ol class="trm-toc"><li class="trm-toc-item trm-toc-level-1" title="自定义图表小坑"><a rel="nofollow" class="trm-toc-link" href="#自定义图表小坑"><span class="trm-toc-number">1.</span> <span class="trm-toc-text">自定义图表小坑</span></a></li><li class="trm-toc-item trm-toc-level-1" title="主题配置"><a rel="nofollow" class="trm-toc-link" href="#主题配置"><span class="trm-toc-number">2.</span> <span class="trm-toc-text">主题配置</span></a></li><li class="trm-toc-item trm-toc-level-1" title="评论功能"><a rel="nofollow" class="trm-toc-link" href="#评论功能"><span class="trm-toc-number">3.</span> <span class="trm-toc-text">评论功能</span></a></li></ol>
       </div>
     </div>
 
@@ -667,6 +672,22 @@
     <!-- 评论插件 -->
     
         
+
+        
+
+            
+<script src="https://npm.elemecdn.com/twikoo@1.6.7/dist/twikoo.all.min.js" data-swup-reload-script data-reset="true"></script>
+
+            <script data-swup-reload-script>
+                twikoo.init({
+                    ...{"enable":true,"envId":"https://twikoo-red-pi.vercel.app/","region":null,"option":null},
+                    el:'#tcomment'
+                }).then(function () {
+                    let container = document.querySelector('body>.tk-admin-container')
+                    if(container) container.remove()
+                    document.body.append(document.querySelector('.tk-admin-container'))
+                });;
+            </script>
 
         
     
