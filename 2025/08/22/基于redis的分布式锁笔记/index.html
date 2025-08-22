@@ -7,26 +7,20 @@
 <meta name="full-screen" content="yes">
 <meta name="theme-color" content="#317EFB" />
 <meta content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=0" name="viewport">
-<meta name="description" content="Async 主题文档 自定义图表小坑1.如何添加到项目，先进入manage页面iconfont,右变有一排按钮，点击第二个创建自己的图标库。 2.生成css和js图标链接  [!warning] 图标库中需要添加一个图标才能生成链接,不知道如何添加请看步骤4    3.填入配置 123456assets:  icons:    type: font    # 这里是您从 iconfont 处获得的">
+<meta name="description" content="背景项目从单机转为集群时，服务会多地多分运行。如何保证定时任务只有一个服务去执行，这儿可能会有小伙伴说使用 xxl-job 做分布式定时任务，为下次更新挖个坑！这儿咱先只看redis分布式锁 思路 [!warning]在 Redis 2.6.12 版本以前， SET 命令总是返回 OK 。从 Redis 2.6.12 版本开始， SET 在设置操作成功完成时，才返回 OK 。  主要基于 redi">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hexo + async  踩过的小坑">
-<meta property="og:url" content="https://xi4opang.github.io/2025/08/09/Hexo%20+%20async%20%20%E8%B8%A9%E8%BF%87%E7%9A%84%E5%B0%8F%E5%9D%91/index.html">
+<meta property="og:title" content="基于redis的分布式锁笔记">
+<meta property="og:url" content="https://xi4opang.github.io/2025/08/22/%E5%9F%BA%E4%BA%8Eredis%E7%9A%84%E5%88%86%E5%B8%83%E5%BC%8F%E9%94%81%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="X1a0P4n9">
-<meta property="og:description" content="Async 主题文档 自定义图表小坑1.如何添加到项目，先进入manage页面iconfont,右变有一排按钮，点击第二个创建自己的图标库。 2.生成css和js图标链接  [!warning] 图标库中需要添加一个图标才能生成链接,不知道如何添加请看步骤4    3.填入配置 123456assets:  icons:    type: font    # 这里是您从 iconfont 处获得的">
+<meta property="og:description" content="背景项目从单机转为集群时，服务会多地多分运行。如何保证定时任务只有一个服务去执行，这儿可能会有小伙伴说使用 xxl-job 做分布式定时任务，为下次更新挖个坑！这儿咱先只看redis分布式锁 思路 [!warning]在 Redis 2.6.12 版本以前， SET 命令总是返回 OK 。从 Redis 2.6.12 版本开始， SET 在设置操作成功完成时，才返回 OK 。  主要基于 redi">
 <meta property="og:locale">
-<meta property="og:image" content="https://xi4opang.github.io/img/404.jpg">
-<meta property="og:image" content="https://xi4opang.github.io/img/404.jpg">
-<meta property="og:image" content="https://xi4opang.github.io/img/404.jpg">
-<meta property="article:published_time" content="2025-08-09T15:55:50.325Z">
-<meta property="article:modified_time" content="2025-08-21T14:49:36.062Z">
+<meta property="article:published_time" content="2025-08-22T13:39:22.000Z">
+<meta property="article:modified_time" content="2025-08-22T13:39:57.165Z">
 <meta property="article:author" content="X1a0P4n9">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://xi4opang.github.io/img/404.jpg">
-
-    <meta name="keywords" content="Blog,笔记">
 
 
-<title >Hexo + async  踩过的小坑</title>
+<title >基于redis的分布式锁笔记</title>
 
 <!-- Favicon -->
 
@@ -73,7 +67,7 @@
 
 <!-- Variable -->
 <script>window.ASYNC_CONFIG = {"hostname":"xi4opang.github.io","author":"X1a0P4n9","root":"/","typed_text":["Java/C# Developer"],"theme_version":"0.0.0","theme":{"switch":true,"default":"style-light"},"favicon":{"logo":"log.svg","icon16":"log.svg","icon32":"log.svg","apple_touch_icon":"apple-touch-icon.png","webmanifest":"/site.webmanifest","visibilitychange":false,"hidden":"failure.ico","show_text":"(/≧▽≦/)咦！又好了！","hide_text":"(●—●)喔哟，崩溃啦！"},"i18n":{"placeholder":"搜索文章...","empty":"找不到您查询的内容: ${query}","hits":"找到 ${hits} 条结果","hits_time":"找到 ${hits} 条结果（用时 ${time} 毫秒）","author":"本文作者：","copyright_link":"本文链接：","copyright_license_title":"版权声明：","copyright_license_content":"本博客所有文章除特别声明外，均默认采用 undefined 许可协议。","copy_success":"复制成功","copy_failure":"复制失败","open_read_mode":"进入阅读模式","exit_read_mode":"退出阅读模式","notice_outdate_message":"距离上次更新已经 undefined 天了, 文章内容可能已经过时。","sticky":"置顶","just":"刚刚","min":"分钟前","hour":"小时前","day":"天前","month":"个月前"},"swup":false,"plugin":{"flickr_justified_gallery":"https://npm.elemecdn.com/flickr-justified-gallery@latest/dist/fjGallery.min.js"},"icons":{"sun":"icon-sun","moon":"icon-Moon","play":"icon-player","email":"icon-email","next":"icon-fenlei","calendar":"icon-calendar-v2","clock":"icon-shijian","user":"icon-user","back_top":"icon-top","close":"icon-guanbi","search":"icon-chaxun","reward":"icon-dashang1","toc_tag":"icon-mulu","read":"icon-read-fill","arrows":"icon-zuoyoujiantou-2","double_arrows":"fas fa-angle-double-down","copy":"icon-copy","user_tag":"icon-user"},"icontype":"symbol","highlight":{"plugin":"highlighjs","theme":true,"copy":true,"lang":true,"title":"default","height_limit":false},"toc":{"post_title":false},"live_time":{"start_time":"08/07/2025 00:00:00","prefix":"博客已安全运行 undefined 天"},"danmu":{"enable":false,"el":".trm-banner"},"creative_commons":{"license":"by-nc-sa","language":"deed.zh-hans"},"search":{"enable":true,"type":"local","href":"https://www.google.com/search?q=site:","domain":null,"path":"search.json"}};</script>
-<script id="async-page-config">window.PAGE_CONFIG = {"isPost":true,"isHome":false,"postUpdate":"2025-08-21 22:49:36"};</script>
+<script id="async-page-config">window.PAGE_CONFIG = {"isPost":true,"isHome":false,"postUpdate":"2025-08-22 21:39:57"};</script>
 
 <!-- Theme mode css -->
 <link data-swup-theme rel="stylesheet" href="/css/index.css?v=0.0.0" id="trm-switch-style">
@@ -282,7 +276,7 @@
                             NEWS LETTER
                         </div>
                         <h1 class="trm-mb-30 trm-hsmb-font">
-                            Hexo + async  踩过的小坑
+                            基于redis的分布式锁笔记
                         </h1>
 
                         
@@ -404,7 +398,7 @@
             <svg class="symbol-icon trm-icon" aria-hidden="true">
     <use xlink:href="#icon-calendar-v2"></use>
 </svg><br>
-            08/09
+            08/22
         </div>
     </div>
     <div class="col-sm-4">
@@ -412,7 +406,7 @@
             <svg class="symbol-icon trm-icon" aria-hidden="true">
     <use xlink:href="#icon-shijian"></use>
 </svg><br>
-            23:55
+            21:39
         </div>
     </div>
     <div class="col-sm-4">
@@ -427,21 +421,38 @@
 </div>
 <div class="trm-card ">
     <article id="article-container" class="trm-publication">
-    <p><a target="_blank" rel="noopener" href="https://hexo-theme-async.imalun.com/guide/">Async 主题文档</a></p>
-<h1 id="自定义图表小坑"><a href="#自定义图表小坑" class="headerlink" title="自定义图表小坑"></a>自定义图表小坑</h1><p>1.如何添加到项目，先进入<code>manage</code>页面<a target="_blank" rel="noopener" href="https://www.iconfont.cn/manage/index">iconfont</a>,右变有一排按钮，点击第二个创建自己的图标库。</p>
-<p>2.生成<code>css</code>和<code>js</code>图标链接</p>
-<blockquote>
-<p>[!warning] 图标库中需要添加一个图标才能生成链接,不知道如何添加请看步骤<code>4</code></p>
+    <h1 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h1><p>项目从单机转为集群时，服务会多地多分运行。如何保证定时任务只有一个服务去执行，这儿可能会有小伙伴说使用 <code>xxl-job</code> 做分布式定时任务，为下次更新挖个坑！这儿咱先只看<code>redis</code>分布式锁</p>
+<h1 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h1><blockquote>
+<p>[!warning]<br>在 Redis 2.6.12 版本以前， <a target="_blank" rel="noopener" href="http://doc.redisfans.com/string/set.html#set"><em>SET</em></a> 命令总是返回 OK 。<br>从 Redis 2.6.12 版本开始， <a target="_blank" rel="noopener" href="http://doc.redisfans.com/string/set.html#set"><em>SET</em></a> 在设置操作成功完成时，才返回 OK 。</p>
 </blockquote>
-<p><img src="https://p.sda1.dev/26/48fa2173a1a442d7a5fd4d899911412a/image.png"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
-<p><img src="https://p.sda1.dev/26/8b7ae193342229f8bfe7bd6a778c5d18/image.png"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
-<p>3.填入配置</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">assets:</span></span><br><span class="line">  <span class="attr">icons:</span></span><br><span class="line">    <span class="attr">type:</span> <span class="string">font</span></span><br><span class="line">    <span class="comment"># 这里是您从 iconfont 处获得的图标链接。</span></span><br><span class="line">    <span class="attr">css:</span> <span class="string">//at.alicdn.com/t/c/font_4995113_djqtfsgvrx5.css</span> <span class="comment">#Font class</span></span><br><span class="line">    <span class="attr">js:</span> <span class="string">//at.alicdn.com/t/c/font_4995113_djqtfsgvrx5.js</span> <span class="comment">#Symbol</span></span><br></pre></td></tr></table></figure>
+<p>主要基于 <code>redis</code> 的 <strong><code>SET key value [EX seconds] [PX milliseconds] [NX|XX]</code></strong> 命令，<a target="_blank" rel="noopener" href="https://redis.io/docs/latest/commands/set/">官方</a> 文档解释如下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Set `key` to hold the string `value`. If `key` already holds a value, it is overwritten, regardless of its type. Any previous time to live associated with the key is discarded on successful `SET` operation.  </span><br><span class="line">将 `key` 设置为保存字符串 `value` 。如果 `key` 已保存一个值，则无论其类型如何，该值都会被覆盖。成功 `SET` key 后，任何先前与该 key 关联的生存时间都将被丢弃。</span><br></pre></td></tr></table></figure>
 
-<p>4.自定义图标步骤：点击入库–&gt;右上角「购物车」—&gt; 添加至项目—&gt;选择目标项目—&gt;确定。这样图表就被添加进图标库中了，&#x3D;&#x3D;<strong>但是</strong>&#x3D;&#x3D;每次添加了图表记得点击「点击更新代码…」，不然图库中有但是无法生效（第一次用不知道坑了很久T_T）。<br><img src="https://p.sda1.dev/26/4df6ca146d918e24f4a4ab37910d9f97/image.png"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
-<h1 id="主题配置"><a href="#主题配置" class="headerlink" title="主题配置"></a>主题配置</h1><p><a target="_blank" rel="noopener" href="https://hexo-theme-async.imalun.com/guide/async-config.html">主题官网配置生成器</a>直接可视化操作，就不用按照文档挨个填写了。</p>
-<h1 id="评论功能"><a href="#评论功能" class="headerlink" title="评论功能"></a>评论功能</h1><p>1.使用<a target="_blank" rel="noopener" href="https://twikoo.js.org/">Twikoo</a> 使用文档云函数部署<br>2.注册一下<a target="_blank" rel="noopener" href="https://twikoo.js.org/mongodb-atlas.html">MongoDB Atlas</a> 根据文档一步步来就行了<br>3.在主题配置文件中加入配置</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">comment:</span></span><br><span class="line">  <span class="attr">twikoo:</span></span><br><span class="line">    <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">    <span class="attr">envId:</span>  <span class="comment">#这儿填入你部署好的URL即可</span></span><br><span class="line">    <span class="attr">region:</span> <span class="comment"># 环境地域，默认为 ap-shanghai，如果您的环境地域不是上海，需传此参数</span></span><br><span class="line">    <span class="attr">option:</span> <span class="comment"># 用于区分不同文章的自定义 js 路径，如果您的文章路径不是 location.pathname，需传此参数</span></span><br></pre></td></tr></table></figure>
+<p>此命令有两个可选项<code>EX</code>和<code>NX</code><br>	<code>EX</code> <em>秒</em> ——设置指定的过期时间，以秒为单位（正整数）。<br>	<code>NX</code> 仅当密钥不存在时才设置它。</p>
+<p>为基于<code>redis</code> 实现分布式锁奠定了基础，<code>NX</code>可以保证只有一个<code>key</code>存在然后通过<code>EX</code>设置的过期时间自动释放锁，在<code>redisTemplate</code>中<code>redisTemplate.opsForValue().setIfAbsent(key, value, timeout, unit)</code>  等价于 Redis 的 <code>SET NX EX</code>，这儿<code>NX</code> 对应 <code>setIfAbsent</code>，<code>EX</code>对应<code>setIfAbsent</code>方法中的 <code>timeout</code> 参数。</p>
+<p>那么我该如何手动释放这个锁呢？<br>第一反应就是<code>redisTemplate.delete(key)</code>,但这个操作并不是<strong>原子操作</strong>，正确的做法是使用<code>Lua</code>脚本保证原子性。</p>
+<h1 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h1><p>首先加锁需要保证<code>setIfAbsent(key, value, timeout, unit)</code>中的<code>value</code> 需要<strong>保证唯一</strong> 可以使用<code>UUID</code>作为<code>value</code>，具体实现如下</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">lock</span><span class="params">(String lockKey, String requestId, Integer expireTime)</span> &#123;  </span><br><span class="line">    <span class="type">String</span> <span class="variable">lock</span> <span class="operator">=</span> <span class="string">&quot;LOCK_PREFIX&quot;</span> + lockKey;  </span><br><span class="line">    ValueOperations&lt;String, String&gt; ops = redisTemplate.opsForValue();  </span><br><span class="line">    <span class="type">Boolean</span> <span class="variable">result</span> <span class="operator">=</span> ops.setIfAbsent(lock, requestId,  </span><br><span class="line">            expireTime == <span class="literal">null</span> ? CacheConstants.DEFAULT_LOCK_EXPIRE_TIME : expireTime, TimeUnit.SECONDS);  </span><br><span class="line">    <span class="keyword">return</span> result != <span class="literal">null</span> &amp;&amp; result;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>解锁实现</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">UNLOCK_LUA</span> <span class="operator">=</span></span><br><span class="line">    <span class="string">&quot;if redis.call(&#x27;get&#x27;, KEYS[1]) == ARGV[1] then &quot;</span> +</span><br><span class="line">    <span class="string">&quot;   return redis.call(&#x27;del&#x27;, KEYS[1]) &quot;</span> +</span><br><span class="line">    <span class="string">&quot;else &quot;</span> +</span><br><span class="line">    <span class="string">&quot;   return 0 &quot;</span> +</span><br><span class="line">    <span class="string">&quot;end&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">unlock</span><span class="params">(String lockKey, String requestId)</span> &#123;</span><br><span class="line">    <span class="type">String</span> <span class="variable">lock</span> <span class="operator">=</span> <span class="string">&quot;LOCK_PREFIX&quot;</span> + lockKey;</span><br><span class="line">    DefaultRedisScript&lt;Long&gt; redisScript = <span class="keyword">new</span> <span class="title class_">DefaultRedisScript</span>&lt;&gt;(UNLOCK_LUA, Long.class);</span><br><span class="line">    <span class="type">Long</span> <span class="variable">result</span> <span class="operator">=</span> redisTemplate.execute(redisScript, Collections.singletonList(lock), requestId);</span><br><span class="line">    <span class="keyword">return</span> result != <span class="literal">null</span> &amp;&amp; result &gt; <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>现在加锁&#x2F;解锁都有了，定时任务拿到锁之后在超时时间内无法完成任务。此时就需要我们进行续锁,最开始直接一个<code>while</code>循环增加时间，调用处对<code>autoLockThread</code>调用<code>interrupt()</code>中断线程，下次自动续锁的时候<code>Thread.sleep()</code> 就会抛出 <code>InterruptedException</code> 从而中断自动续锁，<strong>注意：这儿并不会直接释放锁</strong>。<br> <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> Thread <span class="title function_">autoContinueLock</span><span class="params">(String lockKey, String requestId, Integer expireTime, <span class="type">int</span> trySecond)</span> &#123;  </span><br><span class="line">    <span class="type">Thread</span> <span class="variable">autoLockThread</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Thread</span>(() -&gt; &#123;  </span><br><span class="line">        <span class="keyword">try</span> &#123;  </span><br><span class="line">            <span class="type">String</span> <span class="variable">lock</span> <span class="operator">=</span> <span class="string">&quot;LOCK_PREFIX&quot;</span> + lockKey;  </span><br><span class="line">            ValueOperations&lt;String, String&gt; ops = redisTemplate.opsForValue();  </span><br><span class="line">            <span class="keyword">while</span> (<span class="literal">true</span>) &#123;  </span><br><span class="line">                Thread.sleep(trySecond * <span class="number">1000L</span>);  </span><br><span class="line">                ops.set(lock, requestId, expireTime, TimeUnit.SECONDS);  </span><br><span class="line">            &#125;  </span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;  </span><br><span class="line">            log.error(<span class="string">&quot;&#123;&#125; 分布式锁自动续期线程报错：&quot;</span>, lockKey, e);  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;);  </span><br><span class="line">    autoLockThread.start();  </span><br><span class="line">    <span class="keyword">return</span> autoLockThread;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>使用<code>ScheduledExecutorService</code> 优化上面通过循环去续锁，它提供了 <strong>定时任务调度</strong> 的能力。其中的<code>scheduleAtFixedRate()</code> 有一段秒速是这样的 “&#x3D;&#x3D;如果此任务的任何执行耗时超过其周期，则后续执行可能会延迟开始，但不会并发执行。&#x3D;&#x3D;”  就可以保证每个定时任务执行完才会释放锁。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">final</span> <span class="type">ScheduledExecutorService</span> <span class="variable">scheduler</span> <span class="operator">=</span> Executors.newScheduledThreadPool(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> ScheduledFuture&lt;?&gt; autoContinueLock(String lockKey, String requestId, Integer expireTime, <span class="type">int</span> trySecond) &#123;</span><br><span class="line">    <span class="type">String</span> <span class="variable">lock</span> <span class="operator">=</span><span class="string">&quot;LOCK_PREFIX&quot;</span> + lockKey;</span><br><span class="line">    ValueOperations&lt;String, String&gt; ops = redisTemplate.opsForValue();</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> scheduler.scheduleAtFixedRate(() -&gt; &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="type">String</span> <span class="variable">currentValue</span> <span class="operator">=</span> ops.get(lock);</span><br><span class="line">            <span class="keyword">if</span> (requestId.equals(currentValue)) &#123;</span><br><span class="line">                ops.set(lock, requestId, expireTime, TimeUnit.SECONDS);</span><br><span class="line">                log.debug(<span class="string">&quot;锁 [&#123;&#125;] 已续期，过期时间 [&#123;&#125;] 秒&quot;</span>, lockKey, expireTime);</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                log.debug(<span class="string">&quot;锁 [&#123;&#125;] 已不属于当前线程，停止续期&quot;</span>, lockKey);</span><br><span class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">IllegalStateException</span>(<span class="string">&quot;lock not owned anymore&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            log.error(<span class="string">&quot;锁 [&#123;&#125;] 自动续期失败: &quot;</span>, lockKey, e);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;, trySecond, trySecond, TimeUnit.SECONDS);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在执行任务之前调用<code>autoContinueLock()</code>,下面是一个调用示例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//其他相关代码</span></span><br><span class="line"><span class="keyword">if</span> (!redisService.lock(lockKey, uuid, lockTimeout)) &#123;</span><br><span class="line">          log.info(<span class="string">&quot;获取分布式锁失败，锁Key：&#123;&#125;&quot;</span>, lockKey);</span><br><span class="line">          <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">      &#125;</span><br><span class="line">      log.info(<span class="string">&quot;获取分布式锁成功，锁Key：&#123;&#125;&quot;</span>, lockKey);</span><br><span class="line"></span><br><span class="line">      <span class="comment">// 续锁周期：小于超时时间（通常 1/3）</span></span><br><span class="line">      <span class="type">int</span> <span class="variable">renewalInterval</span> <span class="operator">=</span> lockTimeout / <span class="number">3</span>;</span><br><span class="line">      ScheduledFuture&lt;?&gt; watchdogFuture = redisService.autoContinueLock(lockKey, uuid, lockTimeout, renewalInterval);</span><br><span class="line"></span><br><span class="line">      <span class="keyword">try</span> &#123;</span><br><span class="line">          <span class="comment">// 执行相关业务</span></span><br><span class="line">         </span><br><span class="line">      &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">          <span class="keyword">if</span> (watchdogFuture != <span class="literal">null</span> &amp;&amp; !watchdogFuture.isCancelled()) &#123;</span><br><span class="line">              watchdogFuture.cancel(<span class="literal">true</span>);</span><br><span class="line">              log.info(<span class="string">&quot;停止续锁任务，锁Key：&#123;&#125;&quot;</span>, lockKey);</span><br><span class="line">          &#125;</span><br><span class="line"></span><br><span class="line">          <span class="keyword">if</span> (distributedLock.autoUnlock()) &#123;</span><br><span class="line">              redisService.unlock(lockKey, uuid);</span><br><span class="line">              log.info(<span class="string">&quot;释放分布式锁，锁Key：&#123;&#125;&quot;</span>, lockKey);</span><br><span class="line">          &#125;</span><br><span class="line">      &#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h1><p>对于只确保某一个服务去执行定时任务，当前实现的锁已能满足需求。但它的设计缺少了‘可重入性’，这使得当任务逻辑变得复杂、代码需要模块化拆分时，它会暴露出设计上的短板，甚至导致死锁。因此，从构建一个通用、健壮的分布式锁组件的角度来看，不支持可重-入是 一个个重要的缺陷。同时看门狗线程创建和维护也是一个问题，复杂环境中更推荐使用<code>Redisson</code>这样成熟的解决方案。它不仅解决了以上所有问题，还提供了更优雅的 API 和更丰富的功能：”</p>
+<ul>
+<li>可重入锁：<code>Redisson</code> 的 <code>RLock</code> 默认就是可重入的。</li>
+<li>简洁的 <code>API</code>：它的接口与<code>java.util.concurrent.locks.Lock</code>完全一致，使用 <code>lock.lock() </code>和 <code>lock.unlock() </code>即可，内置的看门狗会自动启动和停止，用户无感知。</li>
+<li>健壮的看门狗：<code>Redisson</code> 内部对线程池和资源管理做了大量优化。</li>
+<li>支持公平锁：提供了 <code>getFairLock()</code> 方法来获取公平锁。</li>
+<li>丰富的功能：内置了读写锁、联锁、信号量、闭锁（<code>CountDownLatch</code>）等多种分布式同步工具。</li>
+</ul>
+
 </article>
     
     
@@ -455,6 +466,7 @@
             <span data-number="02"></span>
         </h5>
     </div>
+    
     
         <div class="col-lg-6">
     <div class="trm-older-publications-card trm-scroll-animation trm-active-el">
@@ -471,27 +483,6 @@
                 <li>25/08/17</li>
                 <li>12:18</li>
                 <li>SpringCloud</li>
-            </ul>
-        </div>
-    </div>
-</div>
-    
-    
-        <div class="col-lg-6">
-    <div class="trm-older-publications-card trm-scroll-animation trm-active-el">
-        <div class="trm-older-publication">
-            
-            <a class="trm-op-top trm-anima-link" href="/2025/08/09/hello-world/">
-                <span class="trm-op-cover">
-                    <img alt="cover" class="no-fancybox" src="https://p.sda1.dev/26/6345fc474e1edb492e18b6b4e3707331/tooltt-fontlogo.png">
-                </span>
-                <h6 class="trm-op-title">Hello World</h6>
-            </a>
-            <div class="trm-divider trm-mb-15 trm-mt-20"></div>
-            <ul class="trm-card-data trm-label">
-                <li>25/08/09</li>
-                <li>23:55</li>
-                <li>未分类</li>
             </ul>
         </div>
     </div>
@@ -563,7 +554,7 @@
 				</span>
       </div>
       <div class="trm-post-toc-content">
-        <ol class="trm-toc"><li class="trm-toc-item trm-toc-level-1" title="自定义图表小坑"><a rel="nofollow" class="trm-toc-link" href="#自定义图表小坑"><span class="trm-toc-number">1.</span> <span class="trm-toc-text">自定义图表小坑</span></a></li><li class="trm-toc-item trm-toc-level-1" title="主题配置"><a rel="nofollow" class="trm-toc-link" href="#主题配置"><span class="trm-toc-number">2.</span> <span class="trm-toc-text">主题配置</span></a></li><li class="trm-toc-item trm-toc-level-1" title="评论功能"><a rel="nofollow" class="trm-toc-link" href="#评论功能"><span class="trm-toc-number">3.</span> <span class="trm-toc-text">评论功能</span></a></li></ol>
+        <ol class="trm-toc"><li class="trm-toc-item trm-toc-level-1" title="背景"><a rel="nofollow" class="trm-toc-link" href="#背景"><span class="trm-toc-number">1.</span> <span class="trm-toc-text">背景</span></a></li><li class="trm-toc-item trm-toc-level-1" title="思路"><a rel="nofollow" class="trm-toc-link" href="#思路"><span class="trm-toc-number">2.</span> <span class="trm-toc-text">思路</span></a></li><li class="trm-toc-item trm-toc-level-1" title="实现"><a rel="nofollow" class="trm-toc-link" href="#实现"><span class="trm-toc-number">3.</span> <span class="trm-toc-text">实现</span></a></li><li class="trm-toc-item trm-toc-level-1" title="缺点"><a rel="nofollow" class="trm-toc-link" href="#缺点"><span class="trm-toc-number">4.</span> <span class="trm-toc-text">缺点</span></a></li></ol>
       </div>
     </div>
 
