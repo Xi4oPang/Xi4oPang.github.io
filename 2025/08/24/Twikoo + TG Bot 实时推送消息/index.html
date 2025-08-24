@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+<meta name="x5-fullscreen" content="true">
+<meta name="full-screen" content="yes">
+<meta name="theme-color" content="#317EFB" />
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=0" name="viewport">
+<meta name="description" content="1. Telegram Bot1.1 创建 Bot 在 Telegram 搜索 @BotFather。 输入 &#x2F;newbot → 设置 Bot 名称和用户名。 获取 Bot Token（例如 123456789:ABC-xyz）。  1.2 获取 Chat ID私聊用户 在 Telegram 找到 Bot，点击 Start，随便发一条消息。 调用：1https:&#x2F;&#x2F;api.telegram.org">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Twikoo + TG Bot 实时推送消息">
+<meta property="og:url" content="https://xi4opang.github.io/2025/08/24/Twikoo%20+%20TG%20Bot%20%E5%AE%9E%E6%97%B6%E6%8E%A8%E9%80%81%E6%B6%88%E6%81%AF/index.html">
+<meta property="og:site_name" content="X1a0P4n9">
+<meta property="og:description" content="1. Telegram Bot1.1 创建 Bot 在 Telegram 搜索 @BotFather。 输入 &#x2F;newbot → 设置 Bot 名称和用户名。 获取 Bot Token（例如 123456789:ABC-xyz）。  1.2 获取 Chat ID私聊用户 在 Telegram 找到 Bot，点击 Start，随便发一条消息。 调用：1https:&#x2F;&#x2F;api.telegram.org">
+<meta property="og:locale">
+<meta property="article:published_time" content="2025-08-24T05:05:37.000Z">
+<meta property="article:modified_time" content="2025-08-24T05:14:39.394Z">
+<meta property="article:author" content="X1a0P4n9">
+<meta name="twitter:card" content="summary">
+
+    <meta name="keywords" content="Blog,笔记">
+
+
+<title >Twikoo + TG Bot 实时推送消息</title>
+
+<!-- Favicon -->
+
+    <link href='/log.svg?v=0.0.0' rel='icon' type='image/png' sizes='16x16' ></link>
+
+
+    <link href='/log.svg?v=0.0.0' rel='icon' type='image/png' sizes='32x32' ></link>
+
+
+    <link href='/apple-touch-icon.png?v=0.0.0' rel='apple-touch-icon' sizes='180x180' ></link>
+
+
+    <link href='/site.webmanifest' rel='manifest' ></link>
+
+
+<!-- Plugin -->
+
+
+
+
+    
+<link rel="stylesheet" href="/css/plugins/bootstrap.row.css">
+
+    
+<link rel="stylesheet" href="https://npm.elemecdn.com/@fancyapps/ui@4.0/dist/fancybox.css">
+
+    
+    
+
+
+
+
+<!-- Icon -->
+
+    
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_4994118_xa88fri8hws.css">
+
+
+
+    
+<script src="//at.alicdn.com/t/c/font_4994118_xa88fri8hws.js"></script>
+
+
+
+<!-- Variable -->
+<script>window.ASYNC_CONFIG = {"hostname":"xi4opang.github.io","author":"X1a0P4n9","root":"/","typed_text":["Java/C# Developer"],"theme_version":"0.0.0","theme":{"switch":true,"default":"style-light"},"favicon":{"logo":"log.svg","icon16":"log.svg","icon32":"log.svg","apple_touch_icon":"apple-touch-icon.png","webmanifest":"/site.webmanifest","visibilitychange":false,"hidden":"failure.ico","show_text":"(/≧▽≦/)咦！又好了！","hide_text":"(●—●)喔哟，崩溃啦！"},"i18n":{"placeholder":"搜索文章...","empty":"找不到您查询的内容: ${query}","hits":"找到 ${hits} 条结果","hits_time":"找到 ${hits} 条结果（用时 ${time} 毫秒）","author":"本文作者：","copyright_link":"本文链接：","copyright_license_title":"版权声明：","copyright_license_content":"本博客所有文章除特别声明外，均默认采用 undefined 许可协议。","copy_success":"复制成功","copy_failure":"复制失败","open_read_mode":"进入阅读模式","exit_read_mode":"退出阅读模式","notice_outdate_message":"距离上次更新已经 undefined 天了, 文章内容可能已经过时。","sticky":"置顶","just":"刚刚","min":"分钟前","hour":"小时前","day":"天前","month":"个月前"},"swup":false,"plugin":{"flickr_justified_gallery":"https://npm.elemecdn.com/flickr-justified-gallery@latest/dist/fjGallery.min.js"},"icons":{"sun":"icon-sun","moon":"icon-Moon","play":"icon-player","email":"icon-email","next":"icon-fenlei","calendar":"icon-calendar-v2","clock":"icon-shijian","user":"icon-user","back_top":"icon-top","close":"icon-guanbi","search":"icon-chaxun","reward":"icon-dashang1","toc_tag":"icon-mulu","read":"icon-read-fill","arrows":"icon-zuoyoujiantou-2","double_arrows":"fas fa-angle-double-down","copy":"icon-copy","user_tag":"icon-user"},"icontype":"symbol","highlight":{"plugin":"highlighjs","theme":true,"copy":true,"lang":true,"title":"default","height_limit":false},"toc":{"post_title":false},"live_time":{"start_time":"08/07/2025 00:00:00","prefix":"博客已安全运行 undefined 天"},"danmu":{"enable":false,"el":".trm-banner"},"creative_commons":{"license":"by-nc-sa","language":"deed.zh-hans"},"search":{"enable":true,"type":"local","href":"https://www.google.com/search?q=site:","domain":null,"path":"search.json"}};</script>
+<script id="async-page-config">window.PAGE_CONFIG = {"isPost":true,"isHome":false,"postUpdate":"2025-08-24 13:14:39"};</script>
+
+<!-- Theme mode css -->
+<link data-swup-theme rel="stylesheet" href="/css/index.css?v=0.0.0" id="trm-switch-style">
+<!-- Custom spacing optimization -->
+<link rel="stylesheet" href="/css/custom-spacing.css?v=0.0.0">
+<script>
+    let defaultMode = ASYNC_CONFIG.theme.default !=='auto' ?  ASYNC_CONFIG.theme.default : (window.matchMedia("(prefers-color-scheme: light)").matches ? 'style-light' : 'style-dark')
+    let catchMode = localStorage.getItem('theme-mode') || defaultMode;
+    let type = catchMode === 'style-dark' ? 'add' : 'remove';
+    document.documentElement.classList[type]('dark')
+</script>
+
+<!-- CDN -->
+
+
+    
+    
+
+
+
+<!-- Site Analytics -->
+
+
+    
+        <!-- Baidu Analytics -->
+        <script defer>
+            var _hmt = _hmt || [];
+            (function() {
+              var hm = document.createElement("script");
+              hm.src = "https://hm.baidu.com/hm.js?7a0859d23be6d92e726e47761ee85b92";
+              var s = document.getElementsByTagName("script")[0]; 
+              s.parentNode.insertBefore(hm, s);
+            })();
+        </script>
+     
+
+    
+        <!-- Google Analytics -->
+        <script async src='https://www.googletagmanager.com/gtag/js?id=G-9DPTVJK6DJ'></script>
+        <script defer>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-9DPTVJK6DJ');
+        </script>
+    
+
+    
+ 
+
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+
+  <!-- app wrapper -->
+  <div class="trm-app-frame">
+
+    <!-- page preloader -->
+    <div class="trm-preloader">
+    <div class="trm-holder">
+        <div class="preloader">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+</div>
+    <!-- page preloader end -->
+
+    <!-- change mode preloader -->
+    <div class="trm-mode-swich-animation-frame">
+    <div class="trm-mode-swich-animation">
+        <i class="i-sun"><svg class="symbol-icon " aria-hidden="true">
+    <use xlink:href="#icon-sun"></use>
+</svg></i>
+        <div class="trm-horizon"></div>
+        <i class="i-moon"><svg class="symbol-icon " aria-hidden="true">
+    <use xlink:href="#icon-Moon"></use>
+</svg></i>
+    </div>
+</div>
+    <!-- change mode preloader end -->
+
+      <!-- scroll container -->
+      <div id="trm-dynamic-content" class="trm-swup-animation">
+        <div id="trm-scroll-container" class="trm-scroll-container" style="opacity: 0">
+            <!-- top bar -->
+            <header class="trm-top-bar">
+	<div class="container">
+		<div class="trm-left-side">
+			<!-- logo -->
+<a href="/" class="trm-logo-frame trm-anima-link">
+    
+        <img alt="logo" src="/log.svg">
+    
+    
+        <div class="trm-logo-text">
+            X1a0<span>P4n9</span>
+        </div>
+    
+</a>
+<!-- logo end -->
+		</div>
+		<div class="trm-right-side">
+			<!-- menu -->
+<div class="trm-menu">
+    <nav>
+        <ul>
+            
+            <li class="menu-item-has-children ">
+                <a  href="/" target="">
+                    home
+                </a>
+                
+            </li>
+            
+            <li class="menu-item-has-children ">
+                <a data-no-swup href="/archives/" target="">
+                    archives
+                </a>
+                
+            </li>
+            
+            <li class="menu-item-has-children ">
+                <a data-no-swup href="/about/" target="">
+                    about
+                </a>
+                
+            </li>
+            
+            <li class="menu-item-has-children ">
+                <a data-no-swup href="/hotsearch/" target="">
+                    hotsearch
+                </a>
+                
+            </li>
+            
+        </ul>
+    </nav>
+</div>
+<!-- menu end -->
+			
+    <!-- mode switcher place -->
+    <div class="trm-mode-switcher-place">
+        <div class="trm-mode-switcher">
+            <svg class="symbol-icon " aria-hidden="true">
+    <use xlink:href="#icon-sun"></use>
+</svg>
+            <input class="tgl tgl-light" id="trm-swich" type="checkbox">
+            <label class="trm-swich" for="trm-swich"></label>
+            <svg class="symbol-icon " aria-hidden="true">
+    <use xlink:href="#icon-Moon"></use>
+</svg>
+        </div>
+    </div>
+    <!-- mode switcher place end -->
+
+			
+    
+    <div id="trm-search-btn" class="trm-search-btn">
+        <svg class="symbol-icon " aria-hidden="true">
+    <use xlink:href="#icon-chaxun"></use>
+</svg>
+    </div>
+     
+
+		</div>
+		<div class="trm-menu-btn">
+			<span></span>
+		</div>
+	</div>
+</header>
+            <!-- top bar end -->
+
+            <!-- body -->
+            
+<div class="trm-content-start">
+    <!-- banner -->
+    <div class="trm-banner">
+    
+    <!-- banner cover -->
+    <img style="object-position:top;object-fit:cover;" alt="banner" class="trm-banner-cover" src="https://p.sda1.dev/26/261cf9480c4771f22d49de87117f76d4/wallhaven-nk9d6q_1920x1080.png">
+    <!-- banner cover end -->
+    
+
+    <!-- banner content -->
+    <div class="trm-banner-content trm-overlay">
+        <div class="container">
+            <div class="row">
+                
+                <div class="col-lg-4"></div>
+                
+                <div class="col-lg-8">
+
+                    <!-- banner title -->
+                    <div class="trm-banner-text ">
+                        <div class="trm-label trm-mb-20">
+                            NEWS LETTER
+                        </div>
+                        <h1 class="trm-mb-30 trm-hsmb-font">
+                            Twikoo + TG Bot 实时推送消息
+                        </h1>
+
+                        
+                            <ul class="trm-breadcrumbs trm-label">
+                                <li>
+                                    <a href="/" class="trm-anima-link">Home</a>
+                                </li>
+                                <li>
+                                    <span>
+                                        2025
+                                    </span>
+                                </li>
+                            </ul>
+                        
+                    </div>
+                    <!-- banner title end -->
+
+                    <!-- scroll hint -->
+                    <span id="scroll-triger" class="trm-scroll-hint-frame">
+                        <div class="trm-scroll-hint"></div>
+                        <span class="trm-label">Scroll down</span>
+                    </span>
+                    <!-- scroll hint end -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- banner content end -->
+</div>
+    <!-- banner end -->
+    <div class="container">
+        <div class="row">
+            
+                <div class="trm-page-sidebar col-lg-4 hidden-sm">
+                    <!-- main card -->
+                    <div class="trm-main-card-frame trm-sidebar">
+    <div class="trm-main-card"> 
+        <!-- card header -->
+<div class="trm-mc-header">
+    <div class="trm-avatar-frame trm-mb-20">
+        <img alt="Avatar" class="trm-avatar" src="https://e0.365dm.com/22/06/1600x900/skysports-max-verstappen_5809824.jpg?20220619211204">
+    </div>
+    <h5 class="trm-name trm-mb-15">
+        X1a0P4n9
+    </h5>
+    
+        <div class="trm-label">
+            I`m
+            <span class="trm-typed-text">
+                <!-- Words for theme.user.typedText -->
+            </span>
+        </div>
+    
+</div>
+<!-- card header end -->
+        <!-- sidebar social -->
+
+<div class="trm-divider trm-mb-40 trm-mt-40"></div>
+<div class="trm-social">
+    
+        <a href="https://github.com/Xi4oPang" title="github" rel="nofollow" target="_blank">
+            <svg class="symbol-icon " aria-hidden="true">
+    <use xlink:href="#fab fa-github-alt"></use>
+</svg>
+        </a>
+    
+</div>
+
+<!-- sidebar social end -->
+        <!-- info -->
+<div class="trm-divider trm-mb-40 trm-mt-40"></div>
+<ul class="trm-table trm-mb-20">
+    
+        <li>
+            <div class="trm-label">
+                开发语言:
+            </div>
+            <div class="trm-label trm-label-light">
+                JAVA/C#
+            </div>
+        </li>
+    
+        <li>
+            <div class="trm-label">
+                爱好:
+            </div>
+            <div class="trm-label trm-label-light">
+                F1/CS/电影/摄影/羽毛球
+            </div>
+        </li>
+    
+</ul>
+<!-- info end -->
+
+        
+    <div class="trm-divider trm-mb-40 trm-mt-40"></div>
+    <!-- action button -->
+    <div class="text-center">
+        <a href="mailto:xiaopang75@proton.me" class="trm-btn">
+            联系我
+            <svg class="symbol-icon " aria-hidden="true">
+    <use xlink:href="#icon-email"></use>
+</svg>
+        </a>
+    </div>
+    <!-- action button end -->
+
+    </div>
+</div>
+                    <!-- main card end -->
+                </div>
+            
+            <div class="trm-page-content col-lg-8">
+                <div id="trm-content" class="trm-content">
+                    <div class="trm-post-info row hidden-sm">
+    <div class="col-sm-4">
+        <div class="trm-card trm-label trm-label-light text-center">
+            <svg class="symbol-icon trm-icon" aria-hidden="true">
+    <use xlink:href="#icon-calendar-v2"></use>
+</svg><br>
+            08/24
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="trm-card trm-label trm-label-light text-center">
+            <svg class="symbol-icon trm-icon" aria-hidden="true">
+    <use xlink:href="#icon-shijian"></use>
+</svg><br>
+            13:05
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div id="post-author" class="trm-card trm-label trm-label-light text-center">
+            <svg class="symbol-icon trm-icon" aria-hidden="true">
+    <use xlink:href="#icon-user"></use>
+</svg><br>
+            X1a0P4n9
+        </div>
+    </div>
+
+</div>
+<div class="trm-card ">
+    <article id="article-container" class="trm-publication">
+    <h2 id="1-Telegram-Bot"><a href="#1-Telegram-Bot" class="headerlink" title="1. Telegram Bot"></a>1. Telegram Bot</h2><h3 id="1-1-创建-Bot"><a href="#1-1-创建-Bot" class="headerlink" title="1.1 创建 Bot"></a>1.1 创建 Bot</h3><ol>
+<li>在 Telegram 搜索 <code>@BotFather</code>。</li>
+<li>输入 <code>/newbot</code> → 设置 Bot 名称和用户名。</li>
+<li>获取 <strong>Bot Token</strong>（例如 <code>123456789:ABC-xyz</code>）。</li>
+</ol>
+<h3 id="1-2-获取-Chat-ID"><a href="#1-2-获取-Chat-ID" class="headerlink" title="1.2 获取 Chat ID"></a>1.2 获取 Chat ID</h3><h4 id="私聊用户"><a href="#私聊用户" class="headerlink" title="私聊用户"></a>私聊用户</h4><ol>
+<li>在 Telegram 找到 Bot，点击 <strong>Start</strong>，随便发一条消息。</li>
+<li>调用：<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://api.telegram.org/bot&lt;TOKEN&gt;/getUpdates</span><br></pre></td></tr></table></figure></li>
+<li>返回结果中：<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">&quot;chat&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span> <span class="attr">&quot;id&quot;</span><span class="punctuation">:</span> <span class="number">987654321</span><span class="punctuation">,</span> <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;private&quot;</span> <span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+  <code>987654321</code> 即为 Chat ID。</li>
+</ol>
+<h4 id="群聊-频道"><a href="#群聊-频道" class="headerlink" title="群聊 &#x2F; 频道"></a>群聊 &#x2F; 频道</h4><ol>
+<li>将 Bot 拉入群组 &#x2F; 频道。</li>
+<li>群里发送一条消息，再调用 <code>getUpdates</code>。</li>
+<li>群组&#x2F;频道 Chat ID 通常是 <strong>负数</strong>（如 <code>-1001234567890</code>）。</li>
+</ol>
+<h3 id="1-3-推送消息"><a href="#1-3-推送消息" class="headerlink" title="1.3 推送消息"></a>1.3 推送消息</h3><h4 id="GET-请求"><a href="#GET-请求" class="headerlink" title="GET 请求"></a>GET 请求</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://api.telegram.org/bot&lt;TOKEN&gt;/sendMessage?chat_id=&lt;CHAT_ID&gt;&amp;text=HelloWorld</span><br></pre></td></tr></table></figure>
+
+<h4 id="POST-请求"><a href="#POST-请求" class="headerlink" title="POST 请求"></a>POST 请求</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">curl -X POST https://api.telegram.org/bot&lt;TOKEN&gt;/sendMessage \</span><br><span class="line">  -H <span class="string">&quot;Content-Type: application/json&quot;</span> \</span><br><span class="line">  -d <span class="string">&#x27;&#123;&quot;chat_id&quot;: &quot;987654321&quot;, &quot;text&quot;: &quot;Hello World&quot;&#125;&#x27;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="1-4-实时推送方式"><a href="#1-4-实时推送方式" class="headerlink" title="1.4 实时推送方式"></a>1.4 实时推送方式</h3><ul>
+<li><strong>事件触发（推荐）</strong>：在业务逻辑里直接调用 <code>sendMessage</code>。</li>
+<li><strong>定时任务</strong>：定期检查数据源，发现变化就推送。</li>
+<li><strong>Webhook</strong>：主要用于接收用户消息，推送仍需调用 <code>sendMessage</code>。</li>
+</ul>
+<h3 id="1-5-多语言示例"><a href="#1-5-多语言示例" class="headerlink" title="1.5 多语言示例"></a>1.5 多语言示例</h3><h4 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">TOKEN = <span class="string">&quot;123456:ABC-xyz&quot;</span></span><br><span class="line">CHAT_ID = <span class="string">&quot;987654321&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">send_message</span>(<span class="params">text</span>):</span><br><span class="line">    url = <span class="string">f&quot;https://api.telegram.org/bot<span class="subst">&#123;TOKEN&#125;</span>/sendMessage&quot;</span></span><br><span class="line">    requests.post(url, json=&#123;<span class="string">&quot;chat_id&quot;</span>: CHAT_ID, <span class="string">&quot;text&quot;</span>: text&#125;)</span><br><span class="line"></span><br><span class="line">send_message(<span class="string">&quot;实时推送：系统运行正常&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<h4 id="Node-js"><a href="#Node-js" class="headerlink" title="Node.js"></a>Node.js</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> fetch <span class="keyword">from</span> <span class="string">&quot;node-fetch&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="variable constant_">TOKEN</span> = <span class="string">&quot;123456:ABC-xyz&quot;</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="variable constant_">CHAT_ID</span> = <span class="string">&quot;987654321&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">function</span> <span class="title function_">sendMessage</span>(<span class="params">text</span>) &#123;</span><br><span class="line">  <span class="keyword">const</span> url = <span class="string">`https://api.telegram.org/bot<span class="subst">$&#123;TOKEN&#125;</span>/sendMessage`</span>;</span><br><span class="line">  <span class="keyword">await</span> <span class="title function_">fetch</span>(url, &#123;</span><br><span class="line">    <span class="attr">method</span>: <span class="string">&quot;POST&quot;</span>,</span><br><span class="line">    <span class="attr">headers</span>: &#123; <span class="string">&quot;Content-Type&quot;</span>: <span class="string">&quot;application/json&quot;</span> &#125;,</span><br><span class="line">    <span class="attr">body</span>: <span class="title class_">JSON</span>.<span class="title function_">stringify</span>(&#123; <span class="attr">chat_id</span>: <span class="variable constant_">CHAT_ID</span>, text &#125;)</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="title function_">sendMessage</span>(<span class="string">&quot;实时推送：任务完成&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<h4 id="Java-OkHttp"><a href="#Java-OkHttp" class="headerlink" title="Java (OkHttp)"></a>Java (OkHttp)</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> okhttp3.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">TgBotPush</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">TOKEN</span> <span class="operator">=</span> <span class="string">&quot;123456:ABC-xyz&quot;</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">String</span> <span class="variable">CHAT_ID</span> <span class="operator">=</span> <span class="string">&quot;987654321&quot;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">sendMessage</span><span class="params">(String text)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        <span class="type">OkHttpClient</span> <span class="variable">client</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">OkHttpClient</span>();</span><br><span class="line">        <span class="type">RequestBody</span> <span class="variable">body</span> <span class="operator">=</span> RequestBody.create(</span><br><span class="line">            MediaType.parse(<span class="string">&quot;application/json&quot;</span>),</span><br><span class="line">            String.format(<span class="string">&quot;&#123;\&quot;chat_id\&quot;:\&quot;%s\&quot;, \&quot;text\&quot;:\&quot;%s\&quot;&#125;&quot;</span>, CHAT_ID, text)</span><br><span class="line">        );</span><br><span class="line">        <span class="type">Request</span> <span class="variable">request</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Request</span>.Builder()</span><br><span class="line">            .url(<span class="string">&quot;https://api.telegram.org/bot&quot;</span> + TOKEN + <span class="string">&quot;/sendMessage&quot;</span>)</span><br><span class="line">            .post(body)</span><br><span class="line">            .build();</span><br><span class="line">        client.newCall(request).execute();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">        sendMessage(<span class="string">&quot;实时推送：报警  CPU 超过 90%&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="1-6-常见问题"><a href="#1-6-常见问题" class="headerlink" title="1.6 常见问题"></a>1.6 常见问题</h3><ul>
+<li><p><strong>409 Conflict</strong><br> 删除 Webhook：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://api.telegram.org/bot&lt;TOKEN&gt;/deleteWebhook</span><br></pre></td></tr></table></figure></li>
+<li><p><strong>result: []</strong><br> Bot 没收到消息，需先在 Telegram 里点 Start &#x2F; 发消息。</p>
+</li>
+<li><p><strong>国内服务器无法推送</strong><br> 需代理或使用 Vercel &#x2F; Cloudflare Worker 反代。</p>
+</li>
+</ul>
+<h2 id="2-Twikoo-配置与排查"><a href="#2-Twikoo-配置与排查" class="headerlink" title="2. Twikoo 配置与排查"></a>2. Twikoo 配置与排查</h2><h3 id="2-1-后端运行状态"><a href="#2-1-后端运行状态" class="headerlink" title="2.1 后端运行状态"></a>2.1 后端运行状态</h3><p>访问 Twikoo API，如果返回：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span><span class="attr">&quot;code&quot;</span><span class="punctuation">:</span><span class="number">100</span><span class="punctuation">,</span><span class="attr">&quot;message&quot;</span><span class="punctuation">:</span><span class="string">&quot;Twikoo 云函数运行正常&quot;</span><span class="punctuation">,</span><span class="attr">&quot;version&quot;</span><span class="punctuation">:</span><span class="string">&quot;1.6.44&quot;</span><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>说明后端服务正常。</p>
+<h3 id="2-2-前端配置方式"><a href="#2-2-前端配置方式" class="headerlink" title="2.2 前端配置方式"></a>2.2 前端配置方式</h3><h4 id="Vercel-部署"><a href="#Vercel-部署" class="headerlink" title="Vercel 部署"></a>Vercel 部署</h4><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">twikoo:</span></span><br><span class="line">  <span class="attr">envId:</span> <span class="string">https://your-vercel-project.vercel.app/</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="Node-js-Docker-部署"><a href="#Node-js-Docker-部署" class="headerlink" title="Node.js &#x2F; Docker 部署"></a>Node.js &#x2F; Docker 部署</h4><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">twikoo:</span></span><br><span class="line">  <span class="attr">api:</span> <span class="string">https://your-domain/twikoo</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="HTML-示例"><a href="#HTML-示例" class="headerlink" title="HTML 示例"></a>HTML 示例</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;tcomment&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://cdn.staticfile.org/twikoo/1.6.44/twikoo.all.min.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="language-javascript"></span></span><br><span class="line"><span class="language-javascript">  twikoo.<span class="title function_">init</span>(&#123;</span></span><br><span class="line"><span class="language-javascript">    <span class="attr">envId</span>: <span class="string">&#x27;https://your-domain/twikoo&#x27;</span>, <span class="comment">// 或 Vercel 的地址</span></span></span><br><span class="line"><span class="language-javascript">    <span class="attr">el</span>: <span class="string">&#x27;#tcomment&#x27;</span></span></span><br><span class="line"><span class="language-javascript">  &#125;)</span></span><br><span class="line"><span class="language-javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="2-3-Twikoo-配置示例（带-Telegram-推送）"><a href="#2-3-Twikoo-配置示例（带-Telegram-推送）" class="headerlink" title="2.3 Twikoo 配置示例（带 Telegram 推送）"></a>2.3 Twikoo 配置示例（带 Telegram 推送）</h3><p>在 <strong>Twikoo 后台数据库配置</strong> 中添加：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;SITE_URL&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://你的博客域名&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;MASTER_TAG&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span><span class="string">&quot;博主&quot;</span><span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">&quot;MAIL_ENABLED&quot;</span><span class="punctuation">:</span> <span class="literal"><span class="keyword">false</span></span><span class="punctuation">,</span>             <span class="comment">// 邮件功能关闭</span></span><br><span class="line">  <span class="attr">&quot;TELEGRAM_BOT_TOKEN&quot;</span><span class="punctuation">:</span> <span class="string">&quot;123456:ABC-xyz&quot;</span><span class="punctuation">,</span>  <span class="comment">// 你的 Bot Token</span></span><br><span class="line">  <span class="attr">&quot;TELEGRAM_CHAT_ID&quot;</span><span class="punctuation">:</span> <span class="string">&quot;987654321&quot;</span>          <span class="comment">// 你的 Chat ID，可以是用户/群/频道</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>MAIL_ENABLED: false</code> 避免邮件模块报错。</li>
+<li>只启用 Telegram，评论消息会实时推送到你的 Chat。</li>
+</ul>
+<h3 id="2-4-常见问题"><a href="#2-4-常见问题" class="headerlink" title="2.4 常见问题"></a>2.4 常见问题</h3><ul>
+<li><p><strong>评论按钮灰色不可点</strong></p>
+<ul>
+<li>前端没正确配置 <code>envId</code> 或 <code>api</code>。</li>
+<li>检查浏览器 Console 是否报错。</li>
+</ul>
+</li>
+<li><p><strong>AM Twikoo: 邮件初始化异常：数据库配置不存在</strong></p>
+<ul>
+<li>邮件模块未配置，但被启用。</li>
+<li>解决：设置 <code>MAIL_ENABLED: false</code> 或补齐邮件配置。</li>
+</ul>
+</li>
+<li><p><strong>Telegram 推送失败</strong></p>
+<ul>
+<li>核心是 <code>TELEGRAM_BOT_TOKEN</code> 和 <code>TELEGRAM_CHAT_ID</code> 配置正确。</li>
+<li>若服务器在国内，可能需要代理。</li>
+</ul>
+</li>
+</ul>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><ul>
+<li>Telegram 推送消息的核心：<strong>Bot Token + Chat ID + sendMessage API</strong>。</li>
+<li>Twikoo 评论不可点击按钮 → <strong>前端配置错误</strong>，需确认 <code>envId</code> 或 <code>api</code>。</li>
+<li>推送失败常见于 <strong>服务器访问不了 Telegram API</strong>，可用代理解决。</li>
+</ul>
+
+</article>
+    
+    
+
+</div>
+<div class="trm-post-next-prev row">
+    <div class="col-lg-12">
+        <!-- title -->
+        <h5 class="trm-title-with-divider">
+            其他文章
+            <span data-number="02"></span>
+        </h5>
+    </div>
+    
+    
+        <div class="col-lg-6">
+    <div class="trm-older-publications-card trm-scroll-animation trm-active-el">
+        <div class="trm-older-publication">
+            
+            <a class="trm-op-top trm-anima-link" href="/2025/08/23/Apollo%20window%20%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%20%20%E7%AC%94%E8%AE%B0/">
+                <span class="trm-op-cover">
+                    <img alt="cover" class="no-fancybox" src="https://p.sda1.dev/26/61bd42f5a46a2e2b668de8416766dfb1/image.png">
+                </span>
+                <h6 class="trm-op-title">Apollo window 环境搭建  笔记</h6>
+            </a>
+            <div class="trm-divider trm-mb-15 trm-mt-20"></div>
+            <ul class="trm-card-data trm-label">
+                <li>25/08/23</li>
+                <li>11:20</li>
+                <li>Apollo</li>
+            </ul>
+        </div>
+    </div>
+</div>
+    
+</div>
+
+    
+
+    <div class="trm-card trm-scroll-animation comment-container">
+    <div id="tcomment"></div>
+</div>
+
+
+
+                    <div class="trm-divider footer-divider"></div>
+
+                    <!-- footer -->
+                    <footer class="trm-footer-card trm-scroll-animation">
+
+    
+
+    
+        <div class="trm-footer-item">
+            <span>© 2025 - 2025</span>
+            <span class="footer-separator"data-separator=" · "></span>
+            <span class="trm-accent-color">X1a0P4n9</span>
+        </div>
+    
+
+    
+        <div class="trm-footer-item">
+            <span>
+                由 <a href="https://hexo.io" target="_blank" rel="noopener">Hexo</a> 驱动 v7.3.0
+            </span>
+            <span class="footer-separator" data-separator=" | "></span>
+            <span> 
+                主题 - 
+                <a rel="noopener" href='https://github.com/MaLuns/hexo-theme-async' target='_blank'>Async</a>
+                v0.0.0
+            </span>
+        </div>
+      
+
+    
+        <div class="trm-footer-item blog-run-long"></div>
+     
+
+    
+
+ 
+</footer>
+                    <!-- footer end -->
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+            <!-- body end -->
+
+            
+
+    <div id="post-toc" class="trm-post-toc">
+      <div class="trm-post-toc-header">
+        目录导航
+				<span id="post-toc-top">
+					置顶
+				</span>
+      </div>
+      <div class="trm-post-toc-content">
+        <ol class="trm-toc"><li class="trm-toc-item trm-toc-level-2" title="1. Telegram Bot"><a rel="nofollow" class="trm-toc-link" href="#1-Telegram-Bot"><span class="trm-toc-number">1.</span> <span class="trm-toc-text">1. Telegram Bot</span></a><ol class="trm-toc-child"><li class="trm-toc-item trm-toc-level-3" title="1.1 创建 Bot"><a rel="nofollow" class="trm-toc-link" href="#1-1-创建-Bot"><span class="trm-toc-number">1.1.</span> <span class="trm-toc-text">1.1 创建 Bot</span></a></li><li class="trm-toc-item trm-toc-level-3" title="1.2 获取 Chat ID"><a rel="nofollow" class="trm-toc-link" href="#1-2-获取-Chat-ID"><span class="trm-toc-number">1.2.</span> <span class="trm-toc-text">1.2 获取 Chat ID</span></a><ol class="trm-toc-child"><li class="trm-toc-item trm-toc-level-4" title="私聊用户"><a rel="nofollow" class="trm-toc-link" href="#私聊用户"><span class="trm-toc-number">1.2.1.</span> <span class="trm-toc-text">私聊用户</span></a></li><li class="trm-toc-item trm-toc-level-4" title="群聊 &#x2F; 频道"><a rel="nofollow" class="trm-toc-link" href="#群聊-频道"><span class="trm-toc-number">1.2.2.</span> <span class="trm-toc-text">群聊 &#x2F; 频道</span></a></li></ol></li><li class="trm-toc-item trm-toc-level-3" title="1.3 推送消息"><a rel="nofollow" class="trm-toc-link" href="#1-3-推送消息"><span class="trm-toc-number">1.3.</span> <span class="trm-toc-text">1.3 推送消息</span></a><ol class="trm-toc-child"><li class="trm-toc-item trm-toc-level-4" title="GET 请求"><a rel="nofollow" class="trm-toc-link" href="#GET-请求"><span class="trm-toc-number">1.3.1.</span> <span class="trm-toc-text">GET 请求</span></a></li><li class="trm-toc-item trm-toc-level-4" title="POST 请求"><a rel="nofollow" class="trm-toc-link" href="#POST-请求"><span class="trm-toc-number">1.3.2.</span> <span class="trm-toc-text">POST 请求</span></a></li></ol></li><li class="trm-toc-item trm-toc-level-3" title="1.4 实时推送方式"><a rel="nofollow" class="trm-toc-link" href="#1-4-实时推送方式"><span class="trm-toc-number">1.4.</span> <span class="trm-toc-text">1.4 实时推送方式</span></a></li><li class="trm-toc-item trm-toc-level-3" title="1.5 多语言示例"><a rel="nofollow" class="trm-toc-link" href="#1-5-多语言示例"><span class="trm-toc-number">1.5.</span> <span class="trm-toc-text">1.5 多语言示例</span></a><ol class="trm-toc-child"><li class="trm-toc-item trm-toc-level-4" title="Python"><a rel="nofollow" class="trm-toc-link" href="#Python"><span class="trm-toc-number">1.5.1.</span> <span class="trm-toc-text">Python</span></a></li><li class="trm-toc-item trm-toc-level-4" title="Node.js"><a rel="nofollow" class="trm-toc-link" href="#Node-js"><span class="trm-toc-number">1.5.2.</span> <span class="trm-toc-text">Node.js</span></a></li><li class="trm-toc-item trm-toc-level-4" title="Java (OkHttp)"><a rel="nofollow" class="trm-toc-link" href="#Java-OkHttp"><span class="trm-toc-number">1.5.3.</span> <span class="trm-toc-text">Java (OkHttp)</span></a></li></ol></li><li class="trm-toc-item trm-toc-level-3" title="1.6 常见问题"><a rel="nofollow" class="trm-toc-link" href="#1-6-常见问题"><span class="trm-toc-number">1.6.</span> <span class="trm-toc-text">1.6 常见问题</span></a></li></ol></li><li class="trm-toc-item trm-toc-level-2" title="2. Twikoo 配置与排查"><a rel="nofollow" class="trm-toc-link" href="#2-Twikoo-配置与排查"><span class="trm-toc-number">2.</span> <span class="trm-toc-text">2. Twikoo 配置与排查</span></a><ol class="trm-toc-child"><li class="trm-toc-item trm-toc-level-3" title="2.1 后端运行状态"><a rel="nofollow" class="trm-toc-link" href="#2-1-后端运行状态"><span class="trm-toc-number">2.1.</span> <span class="trm-toc-text">2.1 后端运行状态</span></a></li><li class="trm-toc-item trm-toc-level-3" title="2.2 前端配置方式"><a rel="nofollow" class="trm-toc-link" href="#2-2-前端配置方式"><span class="trm-toc-number">2.2.</span> <span class="trm-toc-text">2.2 前端配置方式</span></a><ol class="trm-toc-child"><li class="trm-toc-item trm-toc-level-4" title="Vercel 部署"><a rel="nofollow" class="trm-toc-link" href="#Vercel-部署"><span class="trm-toc-number">2.2.1.</span> <span class="trm-toc-text">Vercel 部署</span></a></li><li class="trm-toc-item trm-toc-level-4" title="Node.js &#x2F; Docker 部署"><a rel="nofollow" class="trm-toc-link" href="#Node-js-Docker-部署"><span class="trm-toc-number">2.2.2.</span> <span class="trm-toc-text">Node.js &#x2F; Docker 部署</span></a></li><li class="trm-toc-item trm-toc-level-4" title="HTML 示例"><a rel="nofollow" class="trm-toc-link" href="#HTML-示例"><span class="trm-toc-number">2.2.3.</span> <span class="trm-toc-text">HTML 示例</span></a></li></ol></li><li class="trm-toc-item trm-toc-level-3" title="2.3 Twikoo 配置示例（带 Telegram 推送）"><a rel="nofollow" class="trm-toc-link" href="#2-3-Twikoo-配置示例（带-Telegram-推送）"><span class="trm-toc-number">2.3.</span> <span class="trm-toc-text">2.3 Twikoo 配置示例（带 Telegram 推送）</span></a></li><li class="trm-toc-item trm-toc-level-3" title="2.4 常见问题"><a rel="nofollow" class="trm-toc-link" href="#2-4-常见问题"><span class="trm-toc-number">2.4.</span> <span class="trm-toc-text">2.4 常见问题</span></a></li></ol></li><li class="trm-toc-item trm-toc-level-2" title="总结"><a rel="nofollow" class="trm-toc-link" href="#总结"><span class="trm-toc-number">3.</span> <span class="trm-toc-text">总结</span></a></li></ol>
+      </div>
+    </div>
+
+            
+<div class="trm-fixed-container">
+    
+        <div class="trm-fixed-btn post-toc-btn" data-title="目录">
+            <svg class="symbol-icon " aria-hidden="true">
+    <use xlink:href="#icon-mulu"></use>
+</svg>
+        </div>
+    
+    
+        <div class="trm-fixed-btn" data-title="阅读模式" onclick="asyncFun.switchReadMode()">
+            <svg class="symbol-icon " aria-hidden="true">
+    <use xlink:href="#icon-read-fill"></use>
+</svg>
+        </div>
+    
+    
+        <div class="trm-fixed-btn hidden-md" data-title="单栏和双栏切换" onclick="asyncFun.switchSingleColumn()">
+            <svg class="symbol-icon " aria-hidden="true">
+    <use xlink:href="#icon-zuoyoujiantou-2"></use>
+</svg>
+        </div>
+    
+    <div id="trm-back-top" class="trm-fixed-btn" data-title="回到顶部">
+        <svg class="symbol-icon " aria-hidden="true">
+    <use xlink:href="#icon-top"></use>
+</svg>
+    </div>
+</div>
+        </div>
+      </div>
+      <!-- scroll container end -->
+  </div>
+  <!-- app wrapper end -->
+
+  
+    <div class="trm-search-popup">
+        <div class="trm-search-wrapper">
+            <div class="form trm-search-form">
+                <div class="trm-search-input-icon">
+                    <svg class="symbol-icon " aria-hidden="true">
+    <use xlink:href="#icon-chaxun"></use>
+</svg>
+                </div>
+                <input class="trm-search-input" type="text" placeholder="搜索文章...">
+                <div class="trm-search-btn-close">
+                    <svg class="symbol-icon " aria-hidden="true">
+    <use xlink:href="#icon-guanbi"></use>
+</svg>
+                </div>
+            </div>
+            <div class="trm-search-result-container">
+                <div class="trm-search-empty">
+                    请输入关键词进行搜索
+                </div>
+            </div>
+            <div class="trm-search-footer">
+                <div class="trm-search-stats"></div>
+                <ul class="trm-search-commands">
+                    <li>
+                        <kbd class="command-palette-commands-key">
+                            <svg width="15" height="15" aria-label="Escape key" role="img">
+                                <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                    stroke-width="1.2">
+                                    <path
+                                        d="M13.6167 8.936c-.1065.3583-.6883.962-1.4875.962-.7993 0-1.653-.9165-1.653-2.1258v-.5678c0-1.2548.7896-2.1016 1.653-2.1016.8634 0 1.3601.4778 1.4875 1.0724M9 6c-.1352-.4735-.7506-.9219-1.46-.8972-.7092.0246-1.344.57-1.344 1.2166s.4198.8812 1.3445.9805C8.465 7.3992 8.968 7.9337 9 8.5c.032.5663-.454 1.398-1.4595 1.398C6.6593 9.898 6 9 5.963 8.4851m-1.4748.5368c-.2635.5941-.8099.876-1.5443.876s-1.7073-.6248-1.7073-2.204v-.4603c0-1.0416.721-2.131 1.7073-2.131.9864 0 1.6425 1.031 1.5443 2.2492h-2.956">
+                                    </path>
+                                </g>
+                            </svg>
+                        </kbd>
+                        <span class="command-palette-Label">to close</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+  <!-- Plugin -->
+
+
+
+
+    
+    
+<script src="https://npm.elemecdn.com/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
+
+    
+
+    
+        <script src="/js/plugins/typing.js?v=0.0.0"></script>
+    
+
+    
+        
+<script src="https://npm.elemecdn.com/hexo-generator-searchdb@1.4.0/dist/search.js"></script>
+
+        <script src="/js/plugins/local_search.js?v=0.0.0"></script>
+    
+
+    <!-- 数学公式 -->
+    
+
+    <!-- 评论插件 -->
+    
+        
+
+        
+
+            
+<script src="https://npm.elemecdn.com/twikoo@1.6.7/dist/twikoo.all.min.js" data-swup-reload-script data-reset="true"></script>
+
+            <script data-swup-reload-script>
+                twikoo.init({
+                    ...{"enable":true,"envId":"https://twikoo-red-pi.vercel.app/","region":null,"option":null},
+                    el:'#tcomment'
+                }).then(function () {
+                    let container = document.querySelector('body>.tk-admin-container')
+                    if(container) container.remove()
+                    document.body.append(document.querySelector('.tk-admin-container'))
+                });;
+            </script>
+
+        
+    
+
+		
+
+		<!-- 热门搜索插件 -->
+		
+			<script src="/js/plugins/hot-search.js?v=0.0.0"></script>
+		
+
+
+
+
+    <!-- Service Worker -->
+    
+    <!-- baidu push -->
+    
+
+
+<script id="async-script" src="/js/main.js?v=0.0.0"></script>
+
+<!-- CDN -->
+
+
+    
+
+    
+
+    
+
+
+
+</body>
+
+</html>
