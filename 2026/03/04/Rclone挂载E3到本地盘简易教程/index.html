@@ -7,29 +7,21 @@
 <meta name="full-screen" content="yes">
 <meta name="theme-color" content="#317EFB" />
 <meta content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=0" name="viewport">
-<meta name="description" content="[!note] 唯一开销1.需要一个域名且托管到cloudflare   [!tip] 感受目前来说反应有点慢，不知道是不是我得网络问题。  准备0x1.登录cloudflare 平台0x2.找到联网—&gt; Tunnels0x3.创建隧道—&gt; 下载 —&gt; 安装  在关闭创建面板（主要是为了下载cloudflared-windows-amd64.msi）0x4.双击运行创建得文件0">
+<meta name="description" content="场景：在 Windows 上，用 rclone 把微软 E3 企业账号中的 SharePoint 文档库挂载成本地盘符（如 Z:）。   一、准备工作（Windows） 安装 Rclone下载后在命令行输入： 1rclone version  安装 WinFsp（Windows 必须）WinFsp 是 rclone 挂载盘符的依赖。安装后建议重启。  用管理员权限运行 CMD &#x2F; Po">
 <meta property="og:type" content="article">
-<meta property="og:title" content="CloudFlare  Tunnels Windows 远程">
-<meta property="og:url" content="https://xi4opang.github.io/2026/03/03/CloudFlare%20%20Tunnels%20Windows%20%E8%BF%9C%E7%A8%8B/index.html">
+<meta property="og:title" content="Rclone挂载E3到本地盘简易教程">
+<meta property="og:url" content="https://xi4opang.github.io/2026/03/04/Rclone%E6%8C%82%E8%BD%BDE3%E5%88%B0%E6%9C%AC%E5%9C%B0%E7%9B%98%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/index.html">
 <meta property="og:site_name" content="X1a0P4n9">
-<meta property="og:description" content="[!note] 唯一开销1.需要一个域名且托管到cloudflare   [!tip] 感受目前来说反应有点慢，不知道是不是我得网络问题。  准备0x1.登录cloudflare 平台0x2.找到联网—&gt; Tunnels0x3.创建隧道—&gt; 下载 —&gt; 安装  在关闭创建面板（主要是为了下载cloudflared-windows-amd64.msi）0x4.双击运行创建得文件0">
+<meta property="og:description" content="场景：在 Windows 上，用 rclone 把微软 E3 企业账号中的 SharePoint 文档库挂载成本地盘符（如 Z:）。   一、准备工作（Windows） 安装 Rclone下载后在命令行输入： 1rclone version  安装 WinFsp（Windows 必须）WinFsp 是 rclone 挂载盘符的依赖。安装后建议重启。  用管理员权限运行 CMD &#x2F; Po">
 <meta property="og:locale">
-<meta property="og:image" content="https://xi4opang.github.io/img/404.jpg">
-<meta property="og:image" content="https://xi4opang.github.io/img/404.jpg">
-<meta property="og:image" content="https://xi4opang.github.io/img/404.jpg">
-<meta property="og:image" content="https://xi4opang.github.io/img/404.jpg">
-<meta property="og:image" content="https://xi4opang.github.io/img/404.jpg">
-<meta property="og:image" content="https://xi4opang.github.io/img/404.jpg">
-<meta property="article:published_time" content="2026-03-03T13:42:00.000Z">
-<meta property="article:modified_time" content="2026-03-04T13:53:25.982Z">
+<meta property="article:published_time" content="2026-03-04T14:02:55.000Z">
+<meta property="article:modified_time" content="2026-03-04T14:04:02.143Z">
 <meta property="article:author" content="X1a0P4n9">
+<meta property="article:tag" content="blog">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://xi4opang.github.io/img/404.jpg">
-
-    <meta name="keywords" content="Blog,笔记">
 
 
-<title >CloudFlare  Tunnels Windows 远程</title>
+<title >Rclone挂载E3到本地盘简易教程</title>
 
 <!-- Favicon -->
 
@@ -76,7 +68,7 @@
 
 <!-- Variable -->
 <script>window.ASYNC_CONFIG = {"hostname":"xi4opang.github.io","author":"X1a0P4n9","root":"/","typed_text":["Java/C# Developer"],"theme_version":"0.0.0","theme":{"switch":true,"default":"style-light"},"favicon":{"logo":"log.svg","icon16":"log.svg","icon32":"log.svg","apple_touch_icon":"apple-touch-icon.png","webmanifest":"/site.webmanifest","visibilitychange":false,"hidden":"failure.ico","show_text":"(/≧▽≦/)咦！又好了！","hide_text":"(●—●)喔哟，崩溃啦！"},"i18n":{"placeholder":"搜索文章...","empty":"找不到您查询的内容: ${query}","hits":"找到 ${hits} 条结果","hits_time":"找到 ${hits} 条结果（用时 ${time} 毫秒）","author":"本文作者：","copyright_link":"本文链接：","copyright_license_title":"版权声明：","copyright_license_content":"本博客所有文章除特别声明外，均默认采用 undefined 许可协议。","copy_success":"复制成功","copy_failure":"复制失败","open_read_mode":"进入阅读模式","exit_read_mode":"退出阅读模式","notice_outdate_message":"距离上次更新已经 undefined 天了, 文章内容可能已经过时。","sticky":"置顶","just":"刚刚","min":"分钟前","hour":"小时前","day":"天前","month":"个月前"},"swup":false,"plugin":{"flickr_justified_gallery":"https://npm.elemecdn.com/flickr-justified-gallery@latest/dist/fjGallery.min.js"},"icons":{"sun":"icon-sun","moon":"icon-Moon","play":"icon-player","email":"icon-email","next":"icon-fenlei","calendar":"icon-calendar-v2","clock":"icon-shijian","user":"icon-user","back_top":"icon-top","close":"icon-guanbi","search":"icon-chaxun","reward":"icon-dashang1","toc_tag":"icon-mulu","read":"icon-read-fill","arrows":"icon-zuoyoujiantou-2","double_arrows":"fas fa-angle-double-down","copy":"icon-copy","user_tag":"icon-user"},"icontype":"symbol","highlight":{"plugin":"highlighjs","theme":true,"copy":true,"lang":true,"title":"default","height_limit":false},"toc":{"post_title":false},"live_time":{"start_time":"08/07/2025 00:00:00","prefix":"博客已安全运行 undefined 天"},"danmu":{"enable":false,"el":".trm-banner"},"creative_commons":{"license":"by-nc-sa","language":"deed.zh-hans"},"search":{"enable":true,"type":"local","href":"https://www.google.com/search?q=site:","domain":null,"path":"search.json"}};</script>
-<script id="async-page-config">window.PAGE_CONFIG = {"isPost":true,"isHome":false,"postUpdate":"2026-03-04 21:53:25"};</script>
+<script id="async-page-config">window.PAGE_CONFIG = {"isPost":true,"isHome":false,"postUpdate":"2026-03-04 22:04:02"};</script>
 
 <!-- Theme mode css -->
 <link data-swup-theme rel="stylesheet" href="/css/index.css?v=0.0.0" id="trm-switch-style">
@@ -285,7 +277,7 @@
                             NEWS LETTER
                         </div>
                         <h1 class="trm-mb-30 trm-hsmb-font">
-                            CloudFlare  Tunnels Windows 远程
+                            Rclone挂载E3到本地盘简易教程
                         </h1>
 
                         
@@ -407,7 +399,7 @@
             <svg class="symbol-icon trm-icon" aria-hidden="true">
     <use xlink:href="#icon-calendar-v2"></use>
 </svg><br>
-            03/03
+            03/04
         </div>
     </div>
     <div class="col-sm-4">
@@ -415,7 +407,7 @@
             <svg class="symbol-icon trm-icon" aria-hidden="true">
     <use xlink:href="#icon-shijian"></use>
 </svg><br>
-            21:42
+            22:02
         </div>
     </div>
     <div class="col-sm-4">
@@ -431,37 +423,99 @@
 <div class="trm-card ">
     <article id="article-container" class="trm-publication">
     <blockquote>
-<p>[!note] 唯一开销<br>1.需要一个域名且托管到cloudflare</p>
+<p>场景：在 Windows 上，用 rclone 把微软 E3 企业账号中的 SharePoint 文档库挂载成本地盘符（如 Z:）。</p>
 </blockquote>
-<blockquote>
-<p>[!tip] 感受<br>目前来说反应有点慢，不知道是不是我得网络问题。</p>
-</blockquote>
-<h1 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h1><p>0x1.登录cloudflare 平台<br>0x2.找到<code>联网</code>—&gt; <code>Tunnels</code><br>0x3.创建隧道—&gt; <a href="222222">下载</a> —&gt; 安装  在关闭创建面板（主要是为了下载cloudflared-windows-amd64.msi）<br>0x4.双击运行创建得文件<br>0x5.我们打开<code>powershell</code> 验证一下</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"> cloudflared version</span><br><span class="line">cloudflared version 2026.2.0 (built 2026-02-06T14:21 UTC)</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="一、准备工作（Windows）"><a href="#一、准备工作（Windows）" class="headerlink" title="一、准备工作（Windows）"></a>一、准备工作（Windows）</h2><ol>
+<li><p><strong>安装 Rclone</strong><br>下载后在命令行输入：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rclone version</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>安装 WinFsp（Windows 必须）</strong><br>WinFsp 是 rclone 挂载盘符的依赖。安装后建议重启。</p>
+</li>
+<li><p><strong>用管理员权限运行 CMD &#x2F; PowerShell</strong><br>否则挂载盘符可能失败。</p>
+</li>
+</ol>
+<hr>
+<h2 id="二、配置-Rclone（以-remote-名称-“E3”-为例）"><a href="#二、配置-Rclone（以-remote-名称-“E3”-为例）" class="headerlink" title="二、配置 Rclone（以 remote 名称 “E3” 为例）"></a>二、配置 Rclone（以 remote 名称 “E3” 为例）</h2><h3 id="1-创建-remote"><a href="#1-创建-remote" class="headerlink" title="1. 创建 remote"></a>1. 创建 remote</h3><p>在命令行输入：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rclone config</span><br></pre></td></tr></table></figure>
 
-<h1 id="本地配置"><a href="#本地配置" class="headerlink" title="本地配置"></a>本地配置</h1><h2 id="0x1-登录"><a href="#0x1-登录" class="headerlink" title="0x1. 登录"></a>0x1. 登录</h2><p><code>cloudflared tunnel login</code> 登录，这一步需要对你的域名进行授权<br><img src="https://p.sda1.dev/31/977778541caffbbc224fb71f1025356f/image.png"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'><br><img src="https://p.sda1.dev/31/bbb06281035d75017ba21a50958ad084/image.png"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
-<p>回到<code>PowerShell</code>窗口看到如下输出我这一步就成功了,然后会得到一个文件夹<code>C:\Users\&lt;你的用户名&gt;\.cloudflared</code> 。打开文件夹能看一个<code>cert.pem</code>的文件。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">If the browser failed to open, please visit the URL above directly <span class="keyword">in</span> your browser.</span><br><span class="line">2026-03-04T05:45:28Z INF You have successfully logged <span class="keyword">in</span>.</span><br><span class="line">If you wish to copy your credentials to a server, they have been saved to:</span><br><span class="line">C:\Users\Administrator\.cloudflared\cert.pem</span><br></pre></td></tr></table></figure>
+<p>按提示：</p>
+<ol>
+<li>选择：<code>n) New remote</code></li>
+<li>输入名称：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">E3</span><br></pre></td></tr></table></figure>
 
-<h2 id="0x2-创建隧道"><a href="#0x2-创建隧道" class="headerlink" title="0x2. 创建隧道"></a>0x2. 创建隧道</h2><p>使用如下命令创建隧道，隧道名自己随便起</p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cloudflared tunnel create &lt;隧道名&gt;</span><br></pre></td></tr></table></figure>
-<p> 终端输出如下：<br> <figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Tunnel credentials written to C:\Users\Administrator\.cloudflared\<span class="number">5386</span>aad9<span class="literal">-2560-4318-9787-f024b5613a0f</span>.json. cloudflared chose this file based on <span class="built_in">where</span> your origin certificate was found. Keep this file secret. To revoke these credentials, delete the tunnel.</span><br><span class="line">Created tunnel ai with id <span class="number">5386</span>aad9<span class="literal">-2560-4318-9787-f024b5613a0f</span></span><br></pre></td></tr></table></figure><br>这里的 <code>ID</code> 和 <code>JSON</code> 文件都会在下已被被使用。</p>
-<h2 id="0x3-配置隧道"><a href="#0x3-配置隧道" class="headerlink" title="0x3.配置隧道"></a>0x3.配置隧道</h2><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 这里的 tunnel 后面填你的 Tunnel ID</span></span><br><span class="line"><span class="attr">tunnel:</span> <span class="string">&lt;Tunnel</span> <span class="string">ID&gt;</span></span><br><span class="line"><span class="attr">credentials-file:</span> <span class="string">C:\Users\&lt;电脑用户名&gt;\.cloudflared\&lt;Tunnel</span> <span class="string">ID&gt;.json</span></span><br><span class="line"></span><br><span class="line"><span class="attr">ingress:</span></span><br><span class="line">  <span class="comment"># 第一个规则：处理远程桌面 (RDP)，演示是windows所以使用3389端口</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">hostname:</span>  <span class="string">&lt;你的二级域名&gt;</span></span><br><span class="line">    <span class="attr">service:</span> <span class="string">tcp://localhost:3389</span></span><br><span class="line">  <span class="comment"># 最后一个规则：必须是 404，用于处理未匹配的流量</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">service:</span> <span class="string">http_status:404</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="三、关键选项填写方法"><a href="#三、关键选项填写方法" class="headerlink" title="三、关键选项填写方法"></a>三、关键选项填写方法</h2><p>逐项如下：</p>
+<h3 id="1-client-id（回车即可）"><a href="#1-client-id（回车即可）" class="headerlink" title="1. client_id（回车即可）"></a>1. client_id（回车即可）</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">client_id&gt;</span><br></pre></td></tr></table></figure>
 
-<p>再去<code>Tunnels</code> 面板检查一下是否有个同名的隧道被创建<br><img src="https://p.sda1.dev/31/e2d54e2614924bcb20f90809ff39eb9e/image.png"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
-<h2 id="0x4-运行"><a href="#0x4-运行" class="headerlink" title="0x4.运行"></a>0x4.运行</h2><p>根据自己的情况修改<code>path</code>，等<code>Console</code>输出完后去<code>Tunnels</code> 面板看刚才命名的隧道 Status 变为 <code>健康</code> </p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cloudflared tunnel <span class="literal">--config</span>  path\config.yml run</span><br></pre></td></tr></table></figure>
+<p>直接按 Enter。</p>
+<h3 id="2-client-secret（回车）"><a href="#2-client-secret（回车）" class="headerlink" title="2. client_secret（回车）"></a>2. client_secret（回车）</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">client_secret&gt;</span><br></pre></td></tr></table></figure>
 
-<p><img src="https://p.sda1.dev/31/da2863c22be7a98d3b4f6d3ac2c9c32e/image.png"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
-<h2 id="0x5-添加DNS记录"><a href="#0x5-添加DNS记录" class="headerlink" title="0x5.添加DNS记录"></a>0x5.添加<code>DNS</code>记录</h2><p><strong>Type</strong>: <code>CNAME</code><br><strong>Name</strong>: <code>&lt;你的隧道名称&gt;</code><br><strong>Target</strong>: <code>&lt;Tunnel ID&gt;.cfargotunnel.com</code><br>填写好后保存即可</p>
-<h2 id="0x6-被远程电脑设置"><a href="#0x6-被远程电脑设置" class="headerlink" title="0x6.被远程电脑设置"></a>0x6.被远程电脑设置</h2><p>1.“设置” —&gt;“系统” —&gt; “远程桌面” 点击启用远程桌面，<strong>再点击 “高级设置” 取消勾选 “需要计算机使用网络级别身份验证进行连接（建议）”</strong><br>2.”账户” —&gt; “登录选项”  —&gt; “密码” 创建一个登录密码</p>
-<blockquote>
-<p>[!warning]  注意<br>如上操作都是被控制电脑所需要设置的</p>
-</blockquote>
-<h2 id="0x7-远程"><a href="#0x7-远程" class="headerlink" title="0x7.远程"></a>0x7.远程</h2><p>1.远程电脑也需要安装 ‘cloudflare.exe’<br>2.运行隧道桥梁命令</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cloudflared.exe access tcp --hostname &lt;隧道名&gt;.&lt;域名&gt; --listener localhost:&lt;Port&gt;</span><br><span class="line">consle:</span><br><span class="line">2026-03-04T06:34:57Z INF Start Websocket listener host=localhost:&lt;Port&gt;</span><br></pre></td></tr></table></figure>
-<p>3.<code>Win + R</code> 输入 <code>mstsc</code> 打开远程,在 <strong>计算机</strong>  填入： <code>localhost:&lt;Port&gt;</code>  点击连接，在填写用户名和密码即可，在”图二“中点击”是”就可以愉快的操作了。<br><img src="https://p.sda1.dev/31/75598d6fef4335fb5fb6fa85d80a15b9/image.png"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
-<p><img src="https://p.sda1.dev/31/071f1e9f622fca9c73713235e5758762/image.png"  data-tag='post-image' onload='this.onload=null;this.style.opacity=1;' loading="lazy" onerror='this.onerror=null;this.src="/img/404.jpg"'></p>
+<p>继续按 Enter。</p>
+<h3 id="3-选择-OneDrive-云区域（E3-选-1）"><a href="#3-选择-OneDrive-云区域（E3-选-1）" class="headerlink" title="3. 选择 OneDrive 云区域（E3 选 1）"></a>3. 选择 OneDrive 云区域（E3 选 1）</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1) Microsoft Cloud Global</span><br><span class="line">2) Microsoft Cloud for US Government</span><br><span class="line">3) Microsoft Cloud Germany</span><br><span class="line">4) Azure and Office 365 operated by 21Vianet in China</span><br></pre></td></tr></table></figure>
+
+<p>输入：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-tenant（回车即可）"><a href="#4-tenant（回车即可）" class="headerlink" title="4. tenant（回车即可）"></a>4. tenant（回车即可）</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tenant&gt;</span><br></pre></td></tr></table></figure>
+
+<p>继续按 Enter。</p>
+<h3 id="5-Edit-advanced-config-（输入-n）"><a href="#5-Edit-advanced-config-（输入-n）" class="headerlink" title="5. Edit advanced config?（输入 n）"></a>5. Edit advanced config?（输入 n）</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Edit advanced config?</span><br><span class="line">y) Yes</span><br><span class="line">n) No (default)</span><br></pre></td></tr></table></figure>
+
+<p>输入：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">n</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="四、选择类型（E3-不能选-1，会-403-→-必须选-2）"><a href="#四、选择类型（E3-不能选-1，会-403-→-必须选-2）" class="headerlink" title="四、选择类型（E3 不能选 1，会 403 → 必须选 2）"></a>四、选择类型（E3 不能选 1，会 403 → 必须选 2）</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1) OneDrive Personal or Business</span><br><span class="line">2) Root Sharepoint site</span><br><span class="line">3) Sharepoint site name or URL</span><br><span class="line">4) Search for Sharepoint site</span><br></pre></td></tr></table></figure>
+
+<p>由于 E3 账号很多情况下不提供 OneDrive 个人盘（导致 403），<br><strong>必须选：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="五、选择-SharePoint-文档库（一般选-Documents）"><a href="#五、选择-SharePoint-文档库（一般选-Documents）" class="headerlink" title="五、选择 SharePoint 文档库（一般选 Documents）"></a>五、选择 SharePoint 文档库（一般选 Documents）</h2><p>rclone 会列出：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1 / App Packages</span><br><span class="line">2 / Documents</span><br><span class="line">3 / Site Assets</span><br></pre></td></tr></table></figure>
+
+<p>一般选：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2</span><br></pre></td></tr></table></figure>
+
+<p>然后：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Drive OK?</span><br><span class="line">y</span><br></pre></td></tr></table></figure>
+
+<p>保存 remote：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">y</span><br></pre></td></tr></table></figure>
+
+<p>退出：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">q</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="六、挂载为-Z-盘"><a href="#六、挂载为-Z-盘" class="headerlink" title="六、挂载为 Z: 盘"></a>六、挂载为 Z: 盘</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rclone mount E3: Z: --vfs-cache-mode full --network-mode --buffer-size 64M --dir-cache-time 20m --ignore-checksum  --poll-interval 5m</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p><strong><code>--dir-cache-time 10m</code> (原 12h -&gt; 10m)</strong></p>
+<ul>
+<li><p><strong>原因：</strong> 这是解决你问题的关键。将缓存有效期从 12小时 缩短到 10分钟。</p>
+</li>
+<li><p><strong>效果：</strong> 即使 Rclone 没有收到 OneDrive 的自动通知，它也会在 10 分钟后强制去云端刷新一次列表。这样能保证最差情况下，你也能在 10 分钟后看到新文件，而不是死等 12 小时。</p>
+</li>
+</ul>
+</li>
+<li><p><strong><code>--poll-interval 1m</code> (新增&#x2F;明确)</strong></p>
+<ul>
+<li><p><strong>原因：</strong> 虽然是默认值，但显式写出来可以确保它处于开启状态。</p>
+</li>
+<li><p><strong>效果：</strong> 告诉 Rclone 每分钟去问一次 OneDrive：“有新文件吗？”。对于 E3 这种企业版 OneDrive，这个功能通常很有效，能让你的更新在 1-2 分钟内同步。</p>
+</li>
+</ul>
+</li>
+<li><p><code>--ignore-checksum</code> <strong>添加忽略参数（推荐尝试）</strong><br>- 在你的挂载命令中添加 <code>--ignore-checksum</code>，这告诉 Rclone 不要太纠结云端指纹，但对于<strong>文件大小不同</strong>的情况，Rclone 的 VFS 模式依然可能会报错。</p>
+</li>
+</ul>
+<hr>
+<h2 id="七、常见错误说明"><a href="#七、常见错误说明" class="headerlink" title="七、常见错误说明"></a>七、常见错误说明</h2><h3 id="daemon-mode-is-not-supported-on-the-windows-platform"><a href="#daemon-mode-is-not-supported-on-the-windows-platform" class="headerlink" title="daemon mode is not supported on the windows platform"></a>daemon mode is not supported on the windows platform</h3><p>→ 删除 <code>--daemon</code></p>
+<h3 id="symlinks-not-supported"><a href="#symlinks-not-supported" class="headerlink" title="symlinks not supported"></a>symlinks not supported</h3><p>→ 使用 <code>--network-mode</code></p>
+<h3 id="unable-to-get-drive-id"><a href="#unable-to-get-drive-id" class="headerlink" title="unable to get drive_id"></a>unable to get drive_id</h3><p>→ 配置错误，需重新配置并选择 SharePoint (2)</p>
+<hr>
 
 </article>
     
@@ -477,41 +531,21 @@
         </h5>
     </div>
     
+    
         <div class="col-lg-6">
     <div class="trm-older-publications-card trm-scroll-animation trm-active-el">
         <div class="trm-older-publication">
             
-            <a class="trm-op-top trm-anima-link" href="/2026/03/04/Rclone%E6%8C%82%E8%BD%BDE3%E5%88%B0%E6%9C%AC%E5%9C%B0%E7%9B%98%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/">
+            <a class="trm-op-top trm-anima-link" href="/2026/03/03/CloudFlare%20%20Tunnels%20Windows%20%E8%BF%9C%E7%A8%8B/">
                 <span class="trm-op-cover">
                     <img alt="cover" class="no-fancybox" src="https://p.sda1.dev/26/6345fc474e1edb492e18b6b4e3707331/tooltt-fontlogo.png">
                 </span>
-                <h6 class="trm-op-title">Rclone挂载E3到本地盘简易教程</h6>
+                <h6 class="trm-op-title">CloudFlare  Tunnels Windows 远程</h6>
             </a>
             <div class="trm-divider trm-mb-15 trm-mt-20"></div>
             <ul class="trm-card-data trm-label">
-                <li>26/03/04</li>
-                <li>22:02</li>
-                <li>未分类</li>
-            </ul>
-        </div>
-    </div>
-</div>
-    
-    
-        <div class="col-lg-6">
-    <div class="trm-older-publications-card trm-scroll-animation trm-active-el">
-        <div class="trm-older-publication">
-            
-            <a class="trm-op-top trm-anima-link" href="/2025/08/24/Twikoo%20+%20TG%20Bot%20%E5%AE%9E%E6%97%B6%E6%8E%A8%E9%80%81%E6%B6%88%E6%81%AF/">
-                <span class="trm-op-cover">
-                    <img alt="cover" class="no-fancybox" src="https://p.sda1.dev/26/e47467f045ddf98020bef00b3c990b3c/image.png">
-                </span>
-                <h6 class="trm-op-title">Twikoo + TG Bot 实时推送消息</h6>
-            </a>
-            <div class="trm-divider trm-mb-15 trm-mt-20"></div>
-            <ul class="trm-card-data trm-label">
-                <li>25/08/24</li>
-                <li>13:05</li>
+                <li>26/03/03</li>
+                <li>21:42</li>
                 <li>Blog</li>
             </ul>
         </div>
@@ -584,7 +618,7 @@
 				</span>
       </div>
       <div class="trm-post-toc-content">
-        <ol class="trm-toc"><li class="trm-toc-item trm-toc-level-1" title="准备"><a rel="nofollow" class="trm-toc-link" href="#准备"><span class="trm-toc-number">1.</span> <span class="trm-toc-text">准备</span></a></li><li class="trm-toc-item trm-toc-level-1" title="本地配置"><a rel="nofollow" class="trm-toc-link" href="#本地配置"><span class="trm-toc-number">2.</span> <span class="trm-toc-text">本地配置</span></a><ol class="trm-toc-child"><li class="trm-toc-item trm-toc-level-2" title="0x1. 登录"><a rel="nofollow" class="trm-toc-link" href="#0x1-登录"><span class="trm-toc-number">2.1.</span> <span class="trm-toc-text">0x1. 登录</span></a></li><li class="trm-toc-item trm-toc-level-2" title="0x2. 创建隧道"><a rel="nofollow" class="trm-toc-link" href="#0x2-创建隧道"><span class="trm-toc-number">2.2.</span> <span class="trm-toc-text">0x2. 创建隧道</span></a></li><li class="trm-toc-item trm-toc-level-2" title="0x3.配置隧道"><a rel="nofollow" class="trm-toc-link" href="#0x3-配置隧道"><span class="trm-toc-number">2.3.</span> <span class="trm-toc-text">0x3.配置隧道</span></a></li><li class="trm-toc-item trm-toc-level-2" title="0x4.运行"><a rel="nofollow" class="trm-toc-link" href="#0x4-运行"><span class="trm-toc-number">2.4.</span> <span class="trm-toc-text">0x4.运行</span></a></li><li class="trm-toc-item trm-toc-level-2" title="0x5.添加DNS记录"><a rel="nofollow" class="trm-toc-link" href="#0x5-添加DNS记录"><span class="trm-toc-number">2.5.</span> <span class="trm-toc-text">0x5.添加DNS记录</span></a></li><li class="trm-toc-item trm-toc-level-2" title="0x6.被远程电脑设置"><a rel="nofollow" class="trm-toc-link" href="#0x6-被远程电脑设置"><span class="trm-toc-number">2.6.</span> <span class="trm-toc-text">0x6.被远程电脑设置</span></a></li><li class="trm-toc-item trm-toc-level-2" title="0x7.远程"><a rel="nofollow" class="trm-toc-link" href="#0x7-远程"><span class="trm-toc-number">2.7.</span> <span class="trm-toc-text">0x7.远程</span></a></li></ol></li></ol>
+        <ol class="trm-toc"><li class="trm-toc-item trm-toc-level-2" title="一、准备工作（Windows）"><a rel="nofollow" class="trm-toc-link" href="#一、准备工作（Windows）"><span class="trm-toc-number">1.</span> <span class="trm-toc-text">一、准备工作（Windows）</span></a></li><li class="trm-toc-item trm-toc-level-2" title="二、配置 Rclone（以 remote 名称 “E3” 为例）"><a rel="nofollow" class="trm-toc-link" href="#二、配置-Rclone（以-remote-名称-“E3”-为例）"><span class="trm-toc-number">2.</span> <span class="trm-toc-text">二、配置 Rclone（以 remote 名称 “E3” 为例）</span></a><ol class="trm-toc-child"><li class="trm-toc-item trm-toc-level-3" title="1. 创建 remote"><a rel="nofollow" class="trm-toc-link" href="#1-创建-remote"><span class="trm-toc-number">2.1.</span> <span class="trm-toc-text">1. 创建 remote</span></a></li></ol></li><li class="trm-toc-item trm-toc-level-2" title="三、关键选项填写方法"><a rel="nofollow" class="trm-toc-link" href="#三、关键选项填写方法"><span class="trm-toc-number">3.</span> <span class="trm-toc-text">三、关键选项填写方法</span></a><ol class="trm-toc-child"><li class="trm-toc-item trm-toc-level-3" title="1. client_id（回车即可）"><a rel="nofollow" class="trm-toc-link" href="#1-client-id（回车即可）"><span class="trm-toc-number">3.1.</span> <span class="trm-toc-text">1. client_id（回车即可）</span></a></li><li class="trm-toc-item trm-toc-level-3" title="2. client_secret（回车）"><a rel="nofollow" class="trm-toc-link" href="#2-client-secret（回车）"><span class="trm-toc-number">3.2.</span> <span class="trm-toc-text">2. client_secret（回车）</span></a></li><li class="trm-toc-item trm-toc-level-3" title="3. 选择 OneDrive 云区域（E3 选 1）"><a rel="nofollow" class="trm-toc-link" href="#3-选择-OneDrive-云区域（E3-选-1）"><span class="trm-toc-number">3.3.</span> <span class="trm-toc-text">3. 选择 OneDrive 云区域（E3 选 1）</span></a></li><li class="trm-toc-item trm-toc-level-3" title="4. tenant（回车即可）"><a rel="nofollow" class="trm-toc-link" href="#4-tenant（回车即可）"><span class="trm-toc-number">3.4.</span> <span class="trm-toc-text">4. tenant（回车即可）</span></a></li><li class="trm-toc-item trm-toc-level-3" title="5. Edit advanced config?（输入 n）"><a rel="nofollow" class="trm-toc-link" href="#5-Edit-advanced-config-（输入-n）"><span class="trm-toc-number">3.5.</span> <span class="trm-toc-text">5. Edit advanced config?（输入 n）</span></a></li></ol></li><li class="trm-toc-item trm-toc-level-2" title="四、选择类型（E3 不能选 1，会 403 → 必须选 2）"><a rel="nofollow" class="trm-toc-link" href="#四、选择类型（E3-不能选-1，会-403-→-必须选-2）"><span class="trm-toc-number">4.</span> <span class="trm-toc-text">四、选择类型（E3 不能选 1，会 403 → 必须选 2）</span></a></li><li class="trm-toc-item trm-toc-level-2" title="五、选择 SharePoint 文档库（一般选 Documents）"><a rel="nofollow" class="trm-toc-link" href="#五、选择-SharePoint-文档库（一般选-Documents）"><span class="trm-toc-number">5.</span> <span class="trm-toc-text">五、选择 SharePoint 文档库（一般选 Documents）</span></a></li><li class="trm-toc-item trm-toc-level-2" title="六、挂载为 Z: 盘"><a rel="nofollow" class="trm-toc-link" href="#六、挂载为-Z-盘"><span class="trm-toc-number">6.</span> <span class="trm-toc-text">六、挂载为 Z: 盘</span></a></li><li class="trm-toc-item trm-toc-level-2" title="七、常见错误说明"><a rel="nofollow" class="trm-toc-link" href="#七、常见错误说明"><span class="trm-toc-number">7.</span> <span class="trm-toc-text">七、常见错误说明</span></a><ol class="trm-toc-child"><li class="trm-toc-item trm-toc-level-3" title="daemon mode is not supported on the windows platform"><a rel="nofollow" class="trm-toc-link" href="#daemon-mode-is-not-supported-on-the-windows-platform"><span class="trm-toc-number">7.1.</span> <span class="trm-toc-text">daemon mode is not supported on the windows platform</span></a></li><li class="trm-toc-item trm-toc-level-3" title="symlinks not supported"><a rel="nofollow" class="trm-toc-link" href="#symlinks-not-supported"><span class="trm-toc-number">7.2.</span> <span class="trm-toc-text">symlinks not supported</span></a></li><li class="trm-toc-item trm-toc-level-3" title="unable to get drive_id"><a rel="nofollow" class="trm-toc-link" href="#unable-to-get-drive-id"><span class="trm-toc-number">7.3.</span> <span class="trm-toc-text">unable to get drive_id</span></a></li></ol></li></ol>
       </div>
     </div>
 
